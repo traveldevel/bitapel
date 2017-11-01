@@ -26,7 +26,7 @@ Datastore : MongoDB (environment var MONDODB_URL or CF service binded to the dep
 
 ## Web Platform Technical Description
 
-### Blockchain - Fabric Models made with Fabric Composer
+### Blockchain - Hyperledger Fabric Network made and deployed with Hyperledger Composer
 
 #### Participants
 
@@ -64,7 +64,12 @@ Datastore : MongoDB (environment var MONDODB_URL or CF service binded to the dep
 	text
 	confirmed (int 0, 1)
 
-### Backend : Node.js
+### Backend Technology Stack
+
+* Node.js
+* Express
+* BCrypt for passwords
+* AES_256_CTR encryption for database and BlockChain transactions stored
 
 ### UI & UX
 
