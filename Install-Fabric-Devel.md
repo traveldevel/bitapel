@@ -4,6 +4,8 @@
 
 http://releases.ubuntu.com/16.04/ubuntu-16.04.3-desktop-amd64.iso
 
+Install with user "fabric" if you need to use the scripts from "bash-scripts" folder
+
 ### 2. Install Docker CE
 
 https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
