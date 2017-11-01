@@ -1,1 +1,3 @@
 bitapel-admin/.env
+/bash-scripts/composer-data/
+/bash-scripts/composer-logs/

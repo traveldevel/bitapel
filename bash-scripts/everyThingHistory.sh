@@ -9,7 +9,7 @@ rm -f /home/fabric/bitapel.bna
 
 cp /home/fabric/bitapel/fabric-composer/bitapel.bna /home/fabric/bitapel.bna
 
-sudo /usr/local/bin/composer network deploy -p hlfv1 -a bitapel.bna -i PeerAdmin -s randomString -A admin -S
+sudo /usr/local/bin/composer network deploy -p hlfv1 -a /home/fabric/bitapel.bna -i PeerAdmin -s randomString -A admin -S
 
 sleep 5
 
