@@ -12,4 +12,6 @@ https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
 
 ### 3. Install Iroha Nodes
 
+https://github.com/hyperledger/iroha
+
 https://soramitsu.atlassian.net/wiki/spaces/IS/pages/12517377/Create+swarm+network+of+Iroha+nodes
