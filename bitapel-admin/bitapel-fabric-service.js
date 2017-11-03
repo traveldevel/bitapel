@@ -3,7 +3,6 @@ const FABRIC_COMPOSER_REST_URL = process.env.FABRIC_COMPOSER_REST_URL;
 
 var request = require('request');
 var uniqueString = require('unique-string');
-var bcrypt = require('bcrypt');
 
 var aesEnc = require('./bitapel-encrypt');
 
@@ -31,14 +30,15 @@ module.exports.createUser = exports.createUser = function(newUser, res){
             newUser.firstName = aesEnc.encrypt(newUser.firstName, savedId);
             newUser.lastName = aesEnc.encrypt(newUser.lastName, savedId);
             newUser.email = aesEnc.encrypt(newUser.email, savedId);
-            newUser.password = bcrypt.hashSync(newUser.password, 10);        
+            newUser.password = aesEnc.encrypt(newUser.password, "bitapelbitapelbitapel");        
 
             newUser.save(function (err2, newUserUpdated) {
                 if (err2) {
                     res.json(err2);
                 } 
-
-                res.json(newUserUpdated);
+                else{
+                    res.json(newUserUpdated);
+                }
             });
         }                
     });

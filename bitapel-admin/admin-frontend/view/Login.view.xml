@@ -1,0 +1,20 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.Login"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.commons.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		<form:SimpleForm maxContainerCols="3" layout="ResponsiveLayout">
+			<form:content>
+				<Label text="" labelFor="userEmail"/>
+				<Input id="userEmail" placeholder="{i18n>userEmail}" type="Email" width="50%"/>
+
+				<Label text="" labelFor="userPassword"/>
+				<Input id="userPassword" placeholder="{i18n>userPassword}" type="Password" width="50%"/>	
+				
+				<Label text="" labelFor="loginButton"/>
+				<Button id="loginButton" text="{i18n>loginButtonText}" press="onLoginPress" icon="sap-icon://visits" width="50%"/>		
+			</form:content>
+		</form:SimpleForm>
+	</Page>
+</mvc:View>

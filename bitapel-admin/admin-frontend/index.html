@@ -1,1 +1,39 @@
-Admin Frontend
+<!DOCTYPE html >
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title>BitApel - Thing History Administration Tool</title>
+	<!-- <script
+			id="sap-ui-bootstrap"
+			src="http://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-libs="sap.m, sap.tnt"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{"history.for.every.thing.ui": "./"}'
+			data-sap-ui-preload="async">
+	</script> -->
+	<script
+		id="sap-ui-bootstrap"
+		src="resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_belize"
+		data-sap-ui-libs="sap.m, sap.tnt"
+		data-sap-ui-compatVersion="edge"
+		data-sap-ui-resourceroots='{"history.for.every.thing.ui": "./"}'
+		data-sap-ui-preload="async">
+	</script>	
+	<script>
+		sap.ui.getCore().attachInit(function() {
+			sap.ui.require([
+				"sap/ui/core/ComponentContainer"
+			], function() {
+				new sap.ui.core.ComponentContainer({
+					name: "history.for.every.thing.ui"
+				}).placeAt("content");
+			});
+		});
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

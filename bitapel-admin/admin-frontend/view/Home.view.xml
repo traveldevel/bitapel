@@ -1,0 +1,162 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.Home"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="false">
+		<l:BlockLayout
+			id="BlockLayout"
+			background="Default">
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell class="sapUiNoContentPadding">
+					<Image
+						src="{
+							path: 'view>/isPhone',
+							formatter: '.formatter.srcImageValue'
+						}"
+						width="100%"/>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell
+					class="sapUiResponsiveContentPadding"
+					title="{i18n>shopAdminTitle}"
+					backgroundColorSet="ColorSet9"
+					backgroundColorShade="ShadeA"
+					titleAlignment="Left"/>
+			</l:BlockLayoutRow>
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet11"
+					backgroundColorShade="ShadeD">
+					<l:VerticalLayout>
+						<core:Icon
+							src="sap-icon://role"
+							size="2.5rem"
+							color="Default"/>
+						<Title
+							text="{i18n>administrationTitle}"
+							titleStyle="H2"
+							class="sapUiTinyMarginTopBottom"/>
+						<Text
+							text="{i18n>administrationContent}"
+							class="sapUiTinyMarginBottom"/>
+						<Link text="{i18n>accessLink}"/>
+						<Link text="{i18n>learnLink}"/>
+					</l:VerticalLayout>
+				</l:BlockLayoutCell>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet11"
+					backgroundColorShade="ShadeB">
+					<l:VerticalLayout>
+						<core:Icon
+							src="sap-icon://add-product"
+							size="2.5rem"
+							color="Default"/>
+						<Title
+							text="{i18n>productTitle}"
+							titleStyle="H2"
+							class="sapUiTinyMarginTopBottom"/>
+						<Text
+							text="{i18n>productContent}"
+							class="sapUiTinyMarginBottom"/>
+						<Link text="{i18n>accessLink}"/>
+						<Link text="{i18n>learnLink}"/>
+					</l:VerticalLayout>
+				</l:BlockLayoutCell>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet11"
+					backgroundColorShade="ShadeD">
+					<l:VerticalLayout>
+						<core:Icon
+							src="sap-icon://customer-financial-fact-sheet"
+							size="2.5rem"
+							color="Default"/>
+						<Title
+							text="{i18n>revenueTitle}"
+							titleStyle="H2"
+							class="sapUiTinyMarginTopBottom"/>
+						<Text
+							text="{i18n>revenueContent}"
+							class="sapUiTinyMarginBottom"/>
+						<Link text="{i18n>accessLink}"/>
+						<Link text="{i18n>learnLink}"/>
+					</l:VerticalLayout>
+				</l:BlockLayoutCell>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet11"
+					backgroundColorShade="ShadeB">
+					<l:VerticalLayout>
+						<core:Icon
+							src="sap-icon://supplier"
+							size="2.5rem"
+							color="Default"/>
+						<Title
+							text="{i18n>supplierTitle}"
+							titleStyle="H2"
+							class="sapUiTinyMarginTopBottom"/>
+						<Text
+							text="{i18n>supplierContent}"
+							class="sapUiTinyMarginBottom"/>
+						<Link text="{i18n>accessLink}"/>
+						<Link text="{i18n>learnLink}"/>
+					</l:VerticalLayout>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet11"
+					backgroundColorShade="ShadeB">
+					<l:VerticalLayout>
+						<core:Icon
+							src="sap-icon://thumb-up"
+							size="2.5rem"
+							color="Default"/>
+						<Title
+							text="{i18n>socialMediaTitle}"
+							titleStyle="H2"
+							class="sapUiTinyMarginTopBottom"/>
+						<Text
+							text="{i18n>socialMediaContent}"
+							class="sapUiTinyMarginBottom"/>
+						<Link text="{i18n>accessLink}"/>
+						<Link text="{i18n>learnLink}"/>
+					</l:VerticalLayout>
+				</l:BlockLayoutCell>
+				<l:BlockLayoutCell
+					backgroundColorSet="ColorSet9"
+					backgroundColorShade="ShadeA"
+					width="3">
+					<Table items="{path:'history>/latest', templateShareable: false}">
+						<headerToolbar>
+							<Toolbar design="Transparent">
+								<Title text="{i18n>customerOverviewTitle}"/>
+							</Toolbar>
+						</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="{i18n>date}"/>
+								</Column>
+								<Column minScreenWidth="Tablet">
+									<Text text="{i18n>thing}"/>
+								</Column>
+								<Column minScreenWidth="Desktop" hAlign="End">
+									<Text text="{i18n>text}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{history>thing}"/>
+										<Text text="{history>date}"/>
+										<Text text="{history>text}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+		</l:BlockLayout>
+	</Page>
+</mvc:View>

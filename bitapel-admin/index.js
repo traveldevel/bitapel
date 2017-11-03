@@ -27,8 +27,7 @@ app.post('/api/user/register', function (req, res) {
 });
 
 app.post('/api/user/login', function (req, res) {
-    var user = {};
-    res.json(user);
+    bitapelService.loginUser(req, res);
 });
 
 app.get('/api/user/:id', function (req, res) {

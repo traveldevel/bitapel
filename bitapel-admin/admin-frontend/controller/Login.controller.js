@@ -1,0 +1,83 @@
+sap.ui.define([
+		'history/for/every/thing/ui/controller/BaseController',
+		'sap/ui/model/json/JSONModel',
+		'sap/ui/Device',
+		'sap/m/MessageToast',
+		'history/for/every/thing/ui/model/formatter'
+	], function (BaseController, JSONModel, Device, MessageToast, formatter) {
+		"use strict";
+		return BaseController.extend("history.for.every.thing.ui.controller.Login", {
+			formatter: formatter,
+
+			onInit: function () {
+				var oViewModel = new JSONModel({
+					isPhone : Device.system.phone,
+				});
+
+				this.setModel(oViewModel, "view");
+
+				Device.media.attachHandler(function (oDevice) {
+					this.getModel("view").setProperty("/isPhone", oDevice.name === "Phone");
+				}.bind(this));
+
+				if(sessionStorage.sessionID !== undefined){
+					this.getRouter().navTo("home");
+				}
+			},
+
+			onLoginPress: function(){
+
+				var i18n = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+				var oView = this.getView();
+
+				var email = oView.byId("userEmail").getValue();
+				var password = oView.byId("userPassword").getValue();
+
+				if(email.length < 1){
+					MessageToast.show(i18n.getText("loginNoEmailMessage"));
+					return;
+				}
+
+				if(password.length < 1){
+					MessageToast.show(i18n.getI18nText("loginNoPasswordMessage"));
+					return;
+				}
+
+				oView.setBusy(true);
+				
+				var postData = {
+					"email" : email,
+					"password" : password
+				}
+
+				var that = this;
+
+				$.ajax({
+                    type : "POST",
+                    contentType : "application/json",
+                    url : "/api/user/login",
+					dataType : "json",
+					data: JSON.stringify(postData),
+                    async: true, 
+                    success : function(data, textStatus, jqXHR) {
+						
+						console.log(data);
+						
+						sessionStorage.userId = data._id;
+						sessionStorage.user = data;
+
+						var userModel = new JSONModel();
+						userModel.setData(data);
+						that.setModel(userModel, "loggedUser");
+
+						oView.setBusy(false);
+						that.getRouter().navTo('home');		
+                    },
+                    error : function(data, textStatus, jqXHR) {
+						MessageToast.show(i18n.getI18nText("loginErrorMessage"));
+						oView.setBusy(false);
+					}
+				});
+			}
+		});
+});
