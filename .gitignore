@@ -1,3 +1,5 @@
 bitapel-admin/.env
 /bash-scripts/composer-data/
 /bash-scripts/composer-logs/
+/bitapel-admin/npm-debug.log
+/npm-debug.log

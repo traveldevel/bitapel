@@ -10,6 +10,8 @@
 
 	$('#registerButton').click(function(e){
 
+		$.LoadingOverlay('show');
+
 		e.preventDefault();
 
 		var firstName = $('#firstName').val();
@@ -38,6 +40,7 @@
 			data: JSON.stringify(newUser),
 			success: function(data) {
 				if(data._id.length > 0){
+					$.LoadingOverlay('hide');
 					window.location = "/admin-frontend/index.html";	
 				}
 			}
