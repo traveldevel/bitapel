@@ -80,3 +80,5 @@ Made with SOLID Bootstrap Theme : http://blacktie.co/demo/solid/
 #### Amin Frontend UI
 
 Made with SAP Open UI5 : http://openui5.org/
+
+Develop Start Guide : https://github.com/SAP/openui5/blob/master/docs/developing.md
