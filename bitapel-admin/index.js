@@ -1,6 +1,9 @@
 
 require('dotenv').config();
 
+console.log("MongoDB :", process.env.MONGODB_URL);
+console.log("Fabric API :", process.env.FABRIC_COMPOSER_REST_URL);
+
 const port = process.env.port || 8081;
 
 var fabricService = require('./bitapel-fabric-service');
