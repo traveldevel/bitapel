@@ -1,0 +1,47 @@
+{
+    "thingCategories":[
+        {
+            "Key": "it",
+            "Text": "IT Equipment"
+        },
+        {
+            "Key": "vehicle",
+            "Text": "Vehicle (car, truck, bus)"
+        }, 
+        {
+            "Key": "industrial_vehicle",
+            "Text": "Industrial Vehicle"
+        },
+        {
+            "Key": "industrial_equipment",
+            "Text" : "Industrial Equipment"
+        }
+    ],
+    "ThingTypes":[
+        {
+            "Key" : "laptop",
+            "Text" : "Laptop",
+            "Category": "it"
+        },
+        {
+            "Key" : "car",
+            "Text" : "Small car",
+            "Category" : "vehicle"
+        },
+        {
+            "Key" : "truck",
+            "Text" : "Truck",
+            "Category" : "vehicle"
+        },
+        {
+            "Key": "forklifter",
+            "Text": "Fork Lifter",
+            "Category" : "industrial_vehicle"
+        },
+        {
+            "Key": "fridgeaggregate",
+            "Text": "Fridge Aggregate",
+            "Category": "industrial_equipment"
+        }
+    ]
+}
