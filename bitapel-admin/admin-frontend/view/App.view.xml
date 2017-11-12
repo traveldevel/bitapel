@@ -45,7 +45,7 @@
 				</Button>
 				<Button
 					id="userButton"
-					text="{i18n>userName}"
+					text="{loggedUser>/email}"
 					type="Transparent"
 					press="onUserNamePress">
 					<layoutData>

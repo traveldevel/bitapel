@@ -19,7 +19,7 @@ sap.ui.define([
 					this.getModel("view").setProperty("/isPhone", oDevice.name === "Phone");
 				}.bind(this));
 
-				if(sessionStorage.userId === undefined || sessionStorage.userId.length === 0){
+				if(sessionStorage.uId === undefined || sessionStorage.uId.length === 0){
 					this.getRouter().navTo("login");
 				}
 			}

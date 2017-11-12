@@ -40,11 +40,54 @@ module.exports.createUser = exports.createUser = function(newUser, res){
                     res.json(newUserUpdated);
                 }
             });
+        }
+        else{
+            console.log("createUser error : ", error);
         }                
     });
 }
 
-module.exports.getUser = exports.getUser = function(email, password){
-    let user = {};
-    return user;
+module.exports.getUser = exports.getUser = function(id){
+  
+    var getUserPromise = new Promise(
+        
+        function(resolve, reject){
+
+            request({
+                url: FABRIC_COMPOSER_REST_URL + "/api/User",
+                method: "GET"
+            }, function (error, response, body){
+                
+                //console.log(error, body);
+        
+                if (!error && response.statusCode == 200) {
+                    
+                    var users = JSON.parse(body);
+                    //console.log(users);
+                    
+                    var count = users.length;
+                    for(var i = 0; i < count; i++){
+
+                        var decryptedId = aesEnc.decrypt(users[i].id, id);
+                        //console.log("decryptedId : ", decryptedId);
+
+                        if(decryptedId === id){
+                            resolve(users[i]);
+                            break;
+                        }
+                    }
+
+                    reject(new Error("User " + id + " not found"));
+                }       
+                else{
+                    console.log("getUser error : ", error);
+                    reject(error);
+                }                         
+        
+            });
+
+        }
+    );
+
+    return getUserPromise;
 }

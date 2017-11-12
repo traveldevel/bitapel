@@ -61,21 +61,40 @@ sap.ui.define([
                     async: true, 
                     success : function(data, textStatus, jqXHR) {
 						
-						console.log(data);
-						
-						sessionStorage.userId = data._id;
-						sessionStorage.user = data;
+						sessionStorage.uId = data._id;
+						sessionStorage.email = data.email;
+						sessionStorage.firstName = data.firstName;
+						sessionStorage.lastName = data.lastName;
 
-						var userModel = new JSONModel();
+						var userModel = that.getModel("loggedUser");
 						userModel.setData(data);
 						that.setModel(userModel, "loggedUser");
 
+						var sideMenuModel = that.getModel("side");
+						sideMenuModel.loadData("/api/user/menu/" + data._id);
+
+						var alertsModel = that.getModel("alerts");
+						alertsModel.loadData("/api/user/alerts/" + data._id);						
+
 						oView.setBusy(false);
 						that.getRouter().navTo('home');		
+
+						$.getJSON("/api/user/which/" + data._id, function(data){
+
+							if(data.id !== undefined){
+								sessionStorage.bId = data.id;	
+							}
+							else{
+								sessionStorage.clear();
+							}
+						});
                     },
                     error : function(data, textStatus, jqXHR) {
+
 						MessageToast.show(i18n.getI18nText("loginErrorMessage"));
 						oView.setBusy(false);
+
+						sessionStorage.clear();
 					}
 				});
 			}

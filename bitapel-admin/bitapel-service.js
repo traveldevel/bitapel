@@ -71,3 +71,11 @@ module.exports.loginUser = exports.loginUser = function(req, res){
         }
     });
 }
+
+module.exports.whichUser = exports.whichUser = function(req, res, id){
+    
+    fabricService.getUser(id).then(function(user){
+        console.log(user);
+        res.json(user);
+    });
+}
