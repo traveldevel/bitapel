@@ -96,5 +96,7 @@
 				</f:Form>
 		
 		</VBox>
+
+		<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BusyDialog"/>
 	</Page>
 </mvc:View>

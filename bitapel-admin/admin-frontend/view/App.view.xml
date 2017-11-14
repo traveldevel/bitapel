@@ -89,5 +89,4 @@
 			<App id="mainContents"/>
 		</tnt:mainContents>
 	</tnt:ToolPage>
-
 </mvc:View>

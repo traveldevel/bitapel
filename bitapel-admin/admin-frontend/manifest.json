@@ -63,7 +63,11 @@
 			"thingProperties": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/thingProperties.json"
-			}	
+			},
+			"busyDialog": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/busyDialog.json"
+			}			
 		},
 		"routing": {
 			"config": {

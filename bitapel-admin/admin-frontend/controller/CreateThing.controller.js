@@ -2,8 +2,9 @@ sap.ui.define([
 		'history/for/every/thing/ui/controller/BaseController',
 		'sap/ui/model/json/JSONModel',
 		'sap/ui/Device',
-		'history/for/every/thing/ui/model/formatter'
-	], function (BaseController, JSONModel, Device, formatter) {
+		'history/for/every/thing/ui/model/formatter',
+		'history/for/every/thing/ui/service/ThingService',
+	], function (BaseController, JSONModel, Device, formatter, ThingService) {
 		"use strict";
 		return BaseController.extend("history.for.every.thing.ui.controller.CreateThing", {
 			
@@ -23,6 +24,17 @@ sap.ui.define([
 				if(sessionStorage.uId === undefined || sessionStorage.uId.length === 0){
 					this.getRouter().navTo("login");
 				}
+			},
+
+			onCreateThingPress: function(oEvent){
+
+				var oBusyDialog = this.getView().byId("busyDialog").open(); 
+
+				ThingService.createThing().then(function(res){
+					console.log(res);
+
+					oBusyDialog.close();
+				});
 			}
 		});
 });
