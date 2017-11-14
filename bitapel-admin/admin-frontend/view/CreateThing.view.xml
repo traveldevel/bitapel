@@ -75,10 +75,16 @@
 						</f:FormContainer>
 						<f:FormContainer ariaLabelledBy="">
 							<f:formElements>
+
+							</f:formElements>
+						</f:FormContainer>	
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
 								<f:FormElement label="">
 									<f:fields>
 										<Button 
 											id="loginButton" 
+											type="Emphasized"
 											text="{i18n>createThingButtonText}" 
 											press="onCreateThingPress" 
 											icon="sap-icon://add-product"/>
