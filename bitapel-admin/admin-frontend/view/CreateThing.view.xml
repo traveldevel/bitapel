@@ -74,9 +74,7 @@
 							</f:formElements>
 						</f:FormContainer>
 						<f:FormContainer ariaLabelledBy="">
-							<f:formElements>
-
-							</f:formElements>
+							<f:formElements></f:formElements>
 						</f:FormContainer>	
 						<f:FormContainer ariaLabelledBy="">
 							<f:formElements>
