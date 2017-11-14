@@ -5,7 +5,7 @@ sap.ui.define([
 		'history/for/every/thing/ui/model/formatter'
 	], function (BaseController, JSONModel, Device, formatter) {
 		"use strict";
-		return BaseController.extend("history.for.every.thing.ui.controller.Home", {
+		return BaseController.extend("history.for.every.thing.ui.controller.CreateThing", {
 			
 			formatter: formatter,
 

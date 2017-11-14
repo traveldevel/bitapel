@@ -1,0 +1,9 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.Links"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.commons.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		<Link text="{i18n>linksText1}" href="{i18n>linksHref1}"/>
+	</Page>
+</mvc:View>

@@ -21,7 +21,7 @@
 			<l:BlockLayoutRow>
 				<l:BlockLayoutCell
 					class="sapUiResponsiveContentPadding"
-					title="{i18n>shopAdminTitle}"
+					title="{i18n>homePageTitle}"
 					backgroundColorSet="ColorSet9"
 					backgroundColorShade="ShadeA"
 					titleAlignment="Left"/>
@@ -42,8 +42,7 @@
 						<Text
 							text="{i18n>administrationContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>accessLink}"/>
-						<Link text="{i18n>learnLink}"/>
+						<Link text="{i18n>userAccountLinkText}" href="#/userAccount"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
 				<l:BlockLayoutCell
@@ -55,14 +54,14 @@
 							size="2.5rem"
 							color="Default"/>
 						<Title
-							text="{i18n>productTitle}"
+							text="{i18n>thingTitle}"
 							titleStyle="H2"
 							class="sapUiTinyMarginTopBottom"/>
 						<Text
-							text="{i18n>productContent}"
+							text="{i18n>thingContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>accessLink}"/>
-						<Link text="{i18n>learnLink}"/>
+						<Link text="{i18n>createThingLinkText}" href="#/createThing"/>
+						<Link text="{i18n>thingLinkText}" href="#/things"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
 				<l:BlockLayoutCell
@@ -74,37 +73,16 @@
 							size="2.5rem"
 							color="Default"/>
 						<Title
-							text="{i18n>revenueTitle}"
+							text="{i18n>historyTitle}"
 							titleStyle="H2"
 							class="sapUiTinyMarginTopBottom"/>
 						<Text
-							text="{i18n>revenueContent}"
+							text="{i18n>historyContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>accessLink}"/>
-						<Link text="{i18n>learnLink}"/>
+						<Link text="{i18n>historyLinkText}" href="#/thingHistory"/>
+						<Link text="{i18n>historyCreateEventLinkText}" href="#/createEvent"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
-				<l:BlockLayoutCell
-					backgroundColorSet="ColorSet11"
-					backgroundColorShade="ShadeB">
-					<l:VerticalLayout>
-						<core:Icon
-							src="sap-icon://supplier"
-							size="2.5rem"
-							color="Default"/>
-						<Title
-							text="{i18n>supplierTitle}"
-							titleStyle="H2"
-							class="sapUiTinyMarginTopBottom"/>
-						<Text
-							text="{i18n>supplierContent}"
-							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>accessLink}"/>
-						<Link text="{i18n>learnLink}"/>
-					</l:VerticalLayout>
-				</l:BlockLayoutCell>
-			</l:BlockLayoutRow>
-			<l:BlockLayoutRow>
 				<l:BlockLayoutCell
 					backgroundColorSet="ColorSet11"
 					backgroundColorShade="ShadeB">
@@ -114,24 +92,25 @@
 							size="2.5rem"
 							color="Default"/>
 						<Title
-							text="{i18n>socialMediaTitle}"
+							text="{i18n>publicTitle}"
 							titleStyle="H2"
 							class="sapUiTinyMarginTopBottom"/>
 						<Text
-							text="{i18n>socialMediaContent}"
+							text="{i18n>publicContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>accessLink}"/>
-						<Link text="{i18n>learnLink}"/>
+						<Link text="{i18n>publicThingLinkText}" href="#/thingCards"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+			<l:BlockLayoutRow>
 				<l:BlockLayoutCell
 					backgroundColorSet="ColorSet9"
 					backgroundColorShade="ShadeA"
-					width="3">
+					width="4">
 					<Table items="{path:'history>/latest', templateShareable: false}">
 						<headerToolbar>
 							<Toolbar design="Transparent">
-								<Title text="{i18n>customerOverviewTitle}"/>
+								<Title text="{i18n>historyOverviewTitle}"/>
 							</Toolbar>
 						</headerToolbar>
 							<columns>

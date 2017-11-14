@@ -1,0 +1,17 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.CreateThing"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.commons.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		<form:SimpleForm maxContainerCols="3" layout="ResponsiveLayout">
+			<form:content>
+				<Label text="{i18n>thingName}" labelFor="thingName"/>
+				<Input id="thingName" type="Text" width="50%"/>
+
+				<Label text="" labelFor="loginButton"/>
+				<Button id="loginButton" text="{i18n>createThingButtonText}" press="onLoginPress" icon="sap-icon://visits" width="50%"/>		
+			</form:content>
+		</form:SimpleForm>
+	</Page>
+</mvc:View>

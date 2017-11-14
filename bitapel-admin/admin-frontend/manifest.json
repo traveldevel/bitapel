@@ -115,7 +115,22 @@
 					"pattern": "editThing/{id}",
 					"name": "editThing",
 					"target": "editThing"
-				}								
+				},
+				{
+					"pattern": "thingHistory",
+					"name": "thingHistory",
+					"target": "thingHistory"
+				},
+				{
+					"pattern": "thingCards",
+					"name": "thingCards",
+					"target": "thingCards"
+				},	
+				{
+					"pattern": "createEvent",
+					"name": "createEvent",
+					"target": "createEvent"
+				}												
 			],
 			"targets": {
 				"home": {
@@ -141,7 +156,16 @@
 				},
 				"editThing": {
 					"viewName": "EditThing"
-				}							
+				},
+				"thingHistory": {
+					"viewName": "ThingHistory"
+				},	
+				"createEvent": {
+					"viewName": "CreateEvent"
+				},	
+				"thingCards": {
+					"viewName": "ThingCards"
+				}																	
 			}
 		}
 	}

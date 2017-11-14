@@ -11,12 +11,12 @@
 		{
 			"title": "Important Links",
 			"icon": "sap-icon://chain-link",
-			"key": "Important Links was pressed"
+			"key": "links"
 		},
 		{
 			"title": "Legal",
 			"icon": "sap-icon://compare",
-			"key": "Legal was pressed"
+			"key": "legalInfo"
 		}
 	]
 }

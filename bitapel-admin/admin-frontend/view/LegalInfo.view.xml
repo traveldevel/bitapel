@@ -1,0 +1,10 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.LegalInfo"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.commons.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		<Text text="{i18n>legalInfoText1}"/>
+		<Text text="{i18n>legalInfoText2}"/>
+	</Page>
+</mvc:View>

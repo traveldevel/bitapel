@@ -1,0 +1,33 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.UserAccount"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.commons.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		<form:SimpleForm maxContainerCols="3" layout="ResponsiveLayout">
+			<form:content>
+				<Label text="{i18n>firstName}" labelFor="firstName"/>
+				<Input id="firstName" type="Text" width="50%"/>
+
+				<Label text="{i18n>lastName}" labelFor="lastName"/>
+				<Input id="lastName" type="Text" width="50%"/>
+
+				<Label text="{i18n>email}" labelFor="email"/>
+				<Input id="email" type="Text" width="50%"/>		
+
+				<Label text="{i18n>password}" labelFor="password"/>
+				<Input id="password" type="Text" width="50%"/>	
+
+				<Label text="{i18n>confirmPassword}" labelFor="confirmPassword"/>
+				<Input id="confirmPassword" type="Text" width="50%"/>									
+
+				<Label text="" labelFor="saveUserAccountButton"/>
+				<Button id="saveUserAccountButton" 
+					text="{i18n>saveUserAccountButtonText}" 
+					press="onSaveUserAccountButtonPress" 
+					icon="sap-icon://save" 
+					width="50%"/>
+			</form:content>
+		</form:SimpleForm>
+	</Page>
+</mvc:View>
