@@ -1,17 +1,94 @@
 <mvc:View
 	controllerName="history.for.every.thing.ui.controller.CreateThing"
 	xmlns="sap.m"
-	xmlns:form="sap.ui.commons.form"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
 	<Page showHeader="false" busyIndicatorDelay="1">
-		<form:SimpleForm maxContainerCols="3" layout="ResponsiveLayout">
-			<form:content>
-				<Label text="{i18n>thingName}" labelFor="thingName"/>
-				<Input id="thingName" type="Text" width="50%"/>
-
-				<Label text="" labelFor="loginButton"/>
-				<Button id="loginButton" text="{i18n>createThingButtonText}" press="onLoginPress" icon="sap-icon://visits" width="50%"/>		
-			</form:content>
-		</form:SimpleForm>
+		
+			<VBox class="sapUiSmallMargin">
+				
+				<f:Form 
+					id="FormToolbar"
+					editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout />
+					</f:layout>
+					<f:toolbar>
+						<Toolbar id="headerToolbar">
+							<Title id="formTitle" text="{i18n>thingCreateFormTitle}" level="H4" titleStyle="H4"/>
+							<ToolbarSpacer />
+						</Toolbar>
+					</f:toolbar>					
+					<f:formContainers>
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
+								<f:FormElement label="{i18n>thingNameText}">
+									<f:fields>
+										<Input id="thingName" type="Text"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>thingSerialText}">
+									<f:fields>
+										<Input id="thingSerial" type="Text"/>
+									</f:fields>
+								</f:FormElement>	
+								<f:FormElement label="{i18n>thingCategoryText}">
+									<f:fields>
+										<Select
+											id="thingCategory"
+											forceSelection="true"
+											items="{
+												path: 'thingProperties>/thingCategories',
+												sorter: { path: 'Text' }
+											}">
+											<core:Item key="{thingProperties>Key}" text="{thingProperties>Text}" />
+										</Select>
+									</f:fields>
+								</f:FormElement>															
+								<f:FormElement label="{i18n>thingTypeText}">
+									<f:fields>
+										<Select
+											id="thingType"
+											forceSelection="true"
+											items="{
+												path: 'thingProperties>/thingTypes',
+												sorter: { path: 'Text' }
+											}">
+											<core:Item key="{thingProperties>Key}" text="{thingProperties>Text}" />
+										</Select>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>thingManufacturerText}">
+									<f:fields>
+										<Input id="thingManufacturer" type="Text"/>
+									</f:fields>
+								</f:FormElement>		
+								<f:FormElement label="{i18n>thingBuyDateText}">
+									<f:fields>
+										<u:Calendar id="thingBuyDate"/>
+									</f:fields>
+								</f:FormElement>																					
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
+								<f:FormElement label="">
+									<f:fields>
+										<Button 
+											id="loginButton" 
+											text="{i18n>createThingButtonText}" 
+											press="onCreateThingPress" 
+											icon="sap-icon://add-product"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>												
+					</f:formContainers>
+				</f:Form>
+		
+		</VBox>
 	</Page>
 </mvc:View>

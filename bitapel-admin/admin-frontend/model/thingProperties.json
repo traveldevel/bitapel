@@ -17,7 +17,7 @@
             "Text" : "Industrial Equipment"
         }
     ],
-    "ThingTypes":[
+    "thingTypes":[
         {
             "Key" : "laptop",
             "Text" : "Laptop",

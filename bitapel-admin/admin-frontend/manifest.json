@@ -59,7 +59,11 @@
 			"loggedUser": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/loggedUser.json"
-			}
+			},
+			"thingProperties": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/thingProperties.json"
+			}	
 		},
 		"routing": {
 			"config": {

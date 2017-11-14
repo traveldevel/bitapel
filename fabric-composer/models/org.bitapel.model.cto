@@ -3,6 +3,7 @@ namespace org.bitapel.model
 asset Thing identified by id {
   	o String id
     --> User owner
+	o String name
   	o String serial
   	o String category
   	o String manufacturer
