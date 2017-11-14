@@ -77,18 +77,71 @@
 					"target": "home"
 				},
 				{
+					"pattern": "home",
+					"name": "home",
+					"target": "home"
+				},
+				{
+					"pattern": "userAccount",
+					"name": "userAccount",
+					"target": "userAccount"
+				},	
+				{
+					"pattern": "links",
+					"name": "links",
+					"target": "links"
+				},
+				{
+					"pattern": "legalInfo",
+					"name": "legalInfo",
+					"target": "legalInfo"
+				},								
+				{
+					"pattern": "things",
+					"name": "things",
+					"target": "things"
+				},												
+				{
 					"pattern": "login",
 					"name": "login",
 					"target": "login"
-				}
+				},
+				{
+					"pattern": "createThing",
+					"name": "createThing",
+					"target": "createThing"
+				},
+				{
+					"pattern": "editThing/{id}",
+					"name": "editThing",
+					"target": "editThing"
+				}								
 			],
 			"targets": {
 				"home": {
 					"viewName": "Home"
 				},
+				"userAccount": {
+					"viewName": "UserAccount"
+				},	
+				"things": {
+					"viewName": "ThingList"
+				},
+				"links": {
+					"viewName": "Links"
+				},	
+				"legalInfo": {
+					"viewName": "LegalInfo"
+				},															
 				"login": {
 					"viewName": "Login"
-				}
+				},
+				"createThing": {
+					"viewName": "CreateThing"
+				},
+				"editThing": {
+					"viewName": "EditThing"
+				}							
 			}
 		}
 	}

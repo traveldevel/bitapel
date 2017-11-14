@@ -58,24 +58,19 @@ app.get('/api/user/menu/:id', function (req, res) {
                 "title": "Things",
                 "icon": "sap-icon://tree",
                 "key": "things",
-                "items": [
-                    {
-                        "title": "Things 1",
-                        "key": "thing1"
-                    }
-                ]
+                "items": []
             }
         ],
         "fixedNavigation": [
             {
                 "title": "Important Links",
                 "icon": "sap-icon://chain-link",
-                "key": "Important Links was pressed"
+                "key": "links"
             },
             {
                 "title": "Legal",
                 "icon": "sap-icon://compare",
-                "key": "Legal was pressed"
+                "key": "legalInfo"
             }
         ]
     };
