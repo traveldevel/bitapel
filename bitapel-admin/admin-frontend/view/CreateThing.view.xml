@@ -40,6 +40,7 @@
 										<Select
 											id="thingCategory"
 											forceSelection="true"
+											change="onSelectCategoryChange"
 											items="{
 												path: 'thingProperties>/thingCategories',
 												sorter: { path: 'Text' }

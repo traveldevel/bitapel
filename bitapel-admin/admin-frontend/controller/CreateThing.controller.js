@@ -45,6 +45,31 @@ sap.ui.define([
 				oCalendar.addSelectedDate(new DateRange({startDate: new Date()}));
 			},
 
+			onSelectCategoryChange: function(oEvent){
+
+				var oItem = oEvent.getSource().getSelectedItem();
+				var selKey = oItem.getKey();
+				//console.log(selKey, oItem);
+
+				var oView = this.getView();
+				var oTypeSelect = oView.byId("thingType");
+				
+				var oCategoryFilter = new sap.ui.model.Filter({
+					path: "Category",
+					operator: sap.ui.model.FilterOperator.EQ,
+					value1: selKey
+				 });
+				 
+				 var oBinding = oTypeSelect.getBinding("items");
+
+				 if(selKey !== undefined && selKey.length > 0){
+					oBinding.filter([ oCategoryFilter ]);
+				 }
+				 else{
+					oBinding.filter([]);
+				 }
+			},
+
 			validateFormData: function(){
 
 				var oView = this.getView();
