@@ -2,10 +2,11 @@ sap.ui.define([
 		'history/for/every/thing/ui/controller/BaseController',
 		'sap/ui/model/json/JSONModel',
 		'sap/m/MessageToast',
+		'sap/ui/unified/DateRange',
 		'sap/ui/Device',
 		'history/for/every/thing/ui/model/formatter',
 		'history/for/every/thing/ui/service/ThingService',
-	], function (BaseController, JSONModel, MessageToast, Device, formatter, ThingService) {
+	], function (BaseController, JSONModel, MessageToast, DateRange, Device, formatter, ThingService) {
 		"use strict";
 		return BaseController.extend("history.for.every.thing.ui.controller.CreateThing", {
 			
@@ -25,6 +26,23 @@ sap.ui.define([
 				if(sessionStorage.uId === undefined || sessionStorage.uId.length === 0){
 					this.getRouter().navTo("login");
 				}
+
+				this.getRouter().getRoute("createThing").attachMatched(this.handleRouteMatched, this);
+			},
+
+			handleRouteMatched: function(){
+				
+				var oView = this.getView();
+
+				oView.byId('thingName').setValue('');
+				oView.byId('thingSerial').setValue('');
+				oView.byId('thingManufacturer').setValue('');
+				oView.byId('thingType').setSelectedKey('');
+				oView.byId('thingCategory').setSelectedKey('');
+
+				var oCalendar = oView.byId('thingBuyDate');
+				oCalendar.removeAllSelectedDates();
+				oCalendar.addSelectedDate(new DateRange({startDate: new Date()}));
 			},
 
 			validateFormData: function(){

@@ -8,7 +8,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
 
 sleep 1
 
-curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"$class": "org.bitapel.model.Thing","id": "test","owner":"resource:org.bitapel.model.User#id:test","serial": "testserial","category": "test category","manufacturer": "test manufacturer","type": "test type","buyDate": "2017-10-31T14:40:46.015Z"}' 'http://localhost:3000/api/Thing' > /dev/null
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"$class": "org.bitapel.model.Thing","id": "test","name": "test name","owner":"resource:org.bitapel.model.User#id:test","serial": "testserial","category": "test category","manufacturer": "test manufacturer","type": "test type","buyDate": "2017-10-31T14:40:46.015Z"}' 'http://localhost:3000/api/Thing' > /dev/null
 
 sleep 1
 
