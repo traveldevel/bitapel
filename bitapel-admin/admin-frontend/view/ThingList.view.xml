@@ -1,0 +1,56 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.ThingList"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		
+		<Table 
+			id="thingList" 
+			itemPress="onThingSelected" 
+			growing="true"
+			items="{
+				path: 'userThings>/', 
+				templateShareable: false
+			}">
+			<headerToolbar>
+				<Toolbar design="Transparent">
+					<Title text="{i18n>thingListTitle}"/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column hAlign="Middle">
+					<Text text="{i18n>thingNameText}"/>
+				</Column>
+				<Column minScreenWidth="Tablet" hAlign="Middle">
+					<Text text="{i18n>thingSerialText}"/>
+				</Column>
+				<Column minScreenWidth="Desktop" hAlign="Middle">
+					<Text text="{i18n>thingManufacturerText}"/>
+				</Column>				
+				<Column minScreenWidth="Desktop" hAlign="Middle">
+					<Text text="{i18n>thingCategoryText}"/>
+				</Column>
+				<Column minScreenWidth="Desktop" hAlign="Middle">
+					<Text text="{i18n>thingTypeText}"/>
+				</Column>				
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation">
+					<cells>
+						<Text text="{userThings>name}"/>
+						<Text text="{userThings>serial}"/>
+						<Text text="{userThings>manufacturer}"/>
+						<Text text="{userThings>category}"/>
+						<Text text="{userThings>type}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+
+		<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BusyDialog"/>
+	</Page>
+</mvc:View>

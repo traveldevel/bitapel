@@ -8,7 +8,7 @@ sap.ui.define([
 		'history/for/every/thing/ui/service/ThingService',
 	], function (BaseController, JSONModel, MessageToast, DateRange, Device, formatter, ThingService) {
 		"use strict";
-		return BaseController.extend("history.for.every.thing.ui.controller.CreateThing", {
+		return BaseController.extend("history.for.every.thing.ui.controller.EditThing", {
 			
 			formatter: formatter,
 
