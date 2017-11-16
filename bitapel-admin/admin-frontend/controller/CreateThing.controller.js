@@ -107,12 +107,7 @@ sap.ui.define([
 				var that = this;
 
 				var bId = sessionStorage.getItem('bId');
-				var uId = sessionStorage.getItem('uId');
-
-				if(bId === undefined || uId === undefined){
-					MessageToast.show("Session is broken !");
-					return;
-				}
+				var newId = this.newId();
 
 				if(this.validateFormData()){
 
@@ -123,7 +118,7 @@ sap.ui.define([
 	
 					var newThing = {
 						"$class": "org.bitapel.model.Thing",
-						"id": uId + '-' + now.getTime(),                
+						"id": newId,                
 						"owner": "resource:org.bitapel.model.User#id:" + bId,
 						"name": oView.byId('thingName').getValue(),
 						"serial": oView.byId('thingSerial').getValue(),
