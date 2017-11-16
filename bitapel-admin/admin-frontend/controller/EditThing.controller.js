@@ -27,22 +27,52 @@ sap.ui.define([
 					this.getRouter().navTo("login");
 				}
 
-				this.getRouter().getRoute("createThing").attachMatched(this.handleRouteMatched, this);
+				this.getRouter().getRoute("editThing").attachMatched(this.handleRouteMatched, this);
 			},
 
-			handleRouteMatched: function(){
+			handleRouteMatched: function(oEvent){
 				
 				var oView = this.getView();
 
-				oView.byId('thingName').setValue('');
-				oView.byId('thingSerial').setValue('');
-				oView.byId('thingManufacturer').setValue('');
-				oView.byId('thingType').setSelectedKey('');
-				oView.byId('thingCategory').setSelectedKey('');
+				var thingId = oEvent.getParameters().arguments.id;
 
-				var oCalendar = oView.byId('thingBuyDate');
-				oCalendar.removeAllSelectedDates();
-				oCalendar.addSelectedDate(new DateRange({startDate: new Date()}));
+				oView.setBusy(true);
+
+				var that = this;
+
+				ThingService.getThingById(thingId).then(function(thing){
+					console.log(thing);
+
+					oView.byId('thingName').setValue(thing.name);
+					oView.byId('thingSerial').setValue(thing.serial);
+					oView.byId('thingManufacturer').setValue(thing.manufacturer);
+
+					var thingProperties = that.getModel('thingProperties').getData();
+
+					var selType = "";
+					for(var i = 0; i < thingProperties.thingTypes.length; i++){
+						if(thingProperties.thingTypes[i].Text === thing.type){
+							selType = thingProperties.thingTypes[i].Key;
+						}
+					}
+					oView.byId('thingType').setSelectedKey(thing.selType);
+
+					var selCategory = "";
+					for(var i = 0; i < thingProperties.thingCategories.length; i++){
+						if(thingProperties.thingCategories[i].Text === thing.category){
+							selCategory = thingProperties.thingCategories[i].Key;
+						}
+					}					
+					oView.byId('thingCategory').setSelectedKey(selCategory);
+
+					thing.buyDate = new Date(thing.buyDate);
+
+					var oCalendar = oView.byId('thingBuyDate');
+					oCalendar.removeAllSelectedDates();
+					oCalendar.addSelectedDate(new DateRange({startDate: thing.buyDate}));
+
+					oView.setBusy(false);
+				});
 			},
 
 			onSelectCategoryChange: function(oEvent){

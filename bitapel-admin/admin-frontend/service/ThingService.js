@@ -28,6 +28,28 @@ sap.ui.define([
             return promise;
         },
 
+        getThingById : function(thingId) {
+            
+            var promise = new Promise(
+                function(resolve, reject){
+
+                    $.ajax({
+                        type: "GET",
+                        url: fabricUrl + "/api/Thing/" + thingId,
+                        contentType: 'application/json; charset=UTF-8',
+                        success: function(res){                   
+                            resolve(res);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            reject(errorThrown);
+                        }
+                    });
+                }
+            );
+
+            return promise;
+        },
+
         getThings : function(bId) {
     
             var filter = {
@@ -75,6 +97,7 @@ sap.ui.define([
             );
 
             return promise;
-        }        
+        }
+         
     };
 });
