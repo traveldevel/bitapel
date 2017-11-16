@@ -142,7 +142,7 @@ sap.ui.define([
 
 						MessageToast.show("Thing Saved !");
 
-						that.getRouter().navTo("home");
+						that.getRouter().navTo("things");
 					});
 				}
 			}

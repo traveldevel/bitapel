@@ -41,7 +41,7 @@
 			success: function(data) {
 				if(data._id.length > 0){
 					$.LoadingOverlay('hide');
-					window.location = "/admin-frontend/index.html";	
+					window.location = "/admin-frontend/index.html#/login";	
 				}
 			}
 		});
