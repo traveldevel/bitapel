@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-    <title>SOLID - Bootstrap 3 Theme</title>
+    <title>Every Thing History</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -42,7 +42,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">SOLID.</a>
+          <a class="navbar-brand" href="index.html">PageTitle</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
@@ -70,7 +70,7 @@
 	<div id="blue">
 	    <div class="container">
 			<div class="row">
-				<h3>First 1000 register for FREE</h3>
+				<h3>First1000RegisterFree</h3>
 			</div><!-- /row -->
 	    </div> <!-- /container -->
 	</div><!-- /blue -->
@@ -82,20 +82,20 @@
 	 <div class="container mtb">
 	 	<div class="row">
 	 		<div class="col-lg-8">
-	 			<h4>Register Now !</h4>
+	 			<h4>RegisterNow</h4>
 	 			<div class="hline"></div>
-		 			<p>Keep your Thing Value with Independent History</p>
+		 			<p>RegisterFormTitle</p>
 		 			<form id="registerForm" role="form">
 					  <div class="form-group">
-					    <label for="firstName">First Name</label>
+					    <label for="firstName">Firstname</label>
 					    <input type="text" class="form-control" id="firstName">
 					  </div>
 					  <div class="form-group">
-					    <label for="lastName">Last name</label>
+					    <label for="lastName">Lastname</label>
 					    <input type="text" class="form-control" id="lastName">
 						</div>
 					  <div class="form-group">
-					    <label for="email">Email address</label>
+					    <label for="email">EmailAddress</label>
 					    <input type="email" class="form-control" id="email">
 					  </div>						
 					  <div class="form-group">
@@ -103,26 +103,26 @@
 					    <input type="password" class="form-control" id="password">
 						</div>
 					  <div class="form-group">
-					    <label for="confirmPassword">Confirm Password</label>
+					    <label for="confirmPassword">ConfirmPassword</label>
 					    <input type="password" class="form-control" id="confirmPassword">
 					  </div>
-					  <button id="registerButton" type="submit" class="btn btn-theme">Submit</button>
+					  <button id="registerButton" type="submit" class="btn btn-theme">RegisterSubmit</button>
 					</form>
 			</div><! --/col-lg-8 -->
 	 		
 	 		<div class="col-lg-4">
-		 		<h4>Our Address</h4>
+		 		<h4>AddressTitle</h4>
 		 		<div class="hline"></div>
 		 			<p>
-		 				Some Ave, 987,<br/>
-		 				23890, New York,<br/>
-		 				United States.<br/>
+						AddressLine1<br/>
+						AddressLine2<br/>
+						AddressLine3<br/>
 		 			</p>
 		 			<p>
-		 				Email: hello@solidtheme.com<br/>
-		 				Tel: +34 8493-4893
+		 				EmailFooter<br/>
+		 				TelFooter
 		 			</p>
-		 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+		 			<p>AboutMoreText</p>
 	 		</div>
 	 	</div><! --/row -->
 	 </div><! --/container -->
@@ -137,10 +137,10 @@
 		 		<div class="col-lg-4">
 		 			<h4>About</h4>
 		 			<div class="hline-w"></div>
-		 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+		 			<p>AboutFooterText</p>
 		 		</div>
 		 		<div class="col-lg-4">
-		 			<h4>Social Links</h4>
+		 			<h4>SocialLinks</h4>
 		 			<div class="hline-w"></div>
 		 			<p>
 		 				<a href="#"><i class="fa fa-dribbble"></i></a>
@@ -151,12 +151,12 @@
 		 			</p>
 		 		</div>
 		 		<div class="col-lg-4">
-		 			<h4>Our Bunker</h4>
+		 			<h4>AddressTitle</h4>
 		 			<div class="hline-w"></div>
 		 			<p>
-		 				Some Ave, 987,<br/>
-		 				23890, New York,<br/>
-		 				United States.<br/>
+		 				AddressLine1<br/>
+		 				AddressLine2<br/>
+		 				AddressLine3<br/>
 		 			</p>
 		 		</div>
 		 	
@@ -179,5 +179,13 @@
 		<script src="jquery-loading-overlay/loadingoverlay.min.js"></script>
 		<script src="jquery-loading-overlay/loadingoverlay_progress.min.js"></script>
 
+		<script src="assets/js/i18nextify.min.js"></script>
+		<script>
+      window.i18nextify.init({
+        backend: {
+          loadPath: '/public-frontend/locales/{{lng}}/{{ns}}.json'
+        }
+      });
+    </script>
   </body>
 </html>
