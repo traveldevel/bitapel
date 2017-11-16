@@ -91,3 +91,43 @@ module.exports.getUser = exports.getUser = function(id){
 
     return getUserPromise;
 }
+
+module.exports.getThingsForUser = exports.getThingsForUser = function(bId){
+    var getThingsPromise = new Promise(
+        
+        function(resolve, reject){
+
+            var filter = {
+                where: {
+                    owner: "resource:org.bitapel.model.User#id:" + bId
+                }
+            };
+
+            var filterQuery = encodeURIComponent(JSON.stringify(filter));
+
+            request({
+                url: FABRIC_COMPOSER_REST_URL + "/api/Thing?filter=" + filterQuery,
+                method: "GET"
+            }, function (error, response, body){
+                
+                //console.log(error, body);
+        
+                if (!error && response.statusCode == 200) {
+                    
+                    var things = JSON.parse(body);
+                    //console.log(users);
+                    
+                    resolve(things);
+                }       
+                else{
+                    console.log("getUser error : ", error);
+                    reject(error);
+                }                         
+        
+            });
+
+        }
+    );
+
+    return getThingsPromise;
+}

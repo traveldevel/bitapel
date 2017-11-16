@@ -38,44 +38,9 @@ app.get('/api/user/which/:id', function (req, res) {
     bitapelService.whichUser(req, res, id);
 });
 
-app.get('/api/user/menu/:id', function (req, res) {
-    var id = req.params.id;
-
-    var menu = {
-        "navigation": [
-            {
-                "title": "Home",
-                "icon": "sap-icon://home",
-                "expanded": true,
-                "key": "home"
-            },
-            {
-                "title": "Account",
-                "icon": "sap-icon://settings",
-                "key": "userAccount"
-            },
-            {
-                "title": "Things",
-                "icon": "sap-icon://tree",
-                "key": "things",
-                "items": []
-            }
-        ],
-        "fixedNavigation": [
-            {
-                "title": "Important Links",
-                "icon": "sap-icon://chain-link",
-                "key": "links"
-            },
-            {
-                "title": "Legal",
-                "icon": "sap-icon://compare",
-                "key": "legalInfo"
-            }
-        ]
-    };
-
-    res.json(menu);
+app.get('/api/user/menu', function (req, res) {
+    var id = req.query.id;
+    bitapelService.getThingsForUser(req, res, id);
 });
 
 app.get('/api/user/alerts/:id', function (req, res) {

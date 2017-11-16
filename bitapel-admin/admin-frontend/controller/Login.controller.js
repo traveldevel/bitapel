@@ -70,9 +70,6 @@ sap.ui.define([
 						userModel.setData(data);
 						that.setModel(userModel, "loggedUser");
 
-						var sideMenuModel = that.getModel("side");
-						sideMenuModel.loadData("/api/user/menu/" + data._id);
-
 						var alertsModel = that.getModel("alerts");
 						alertsModel.loadData("/api/user/alerts/" + data._id);						
 
@@ -83,6 +80,9 @@ sap.ui.define([
 
 							if(data.id !== undefined){
 								sessionStorage.bId = data.id;	
+
+								var sideMenuModel = that.getModel("side");
+								sideMenuModel.loadData("/api/user/menu?id=" + encodeURIComponent(sessionStorage.bId));								
 							}
 							else{
 								sessionStorage.clear();

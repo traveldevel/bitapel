@@ -79,3 +79,53 @@ module.exports.whichUser = exports.whichUser = function(req, res, id){
         res.json(user);
     });
 }
+
+module.exports.getThingsForUser = exports.getThingsForUser = function(req, res, bId){
+    fabricService.getThingsForUser(bId).then(function(things){
+        console.log(things);
+        
+        var menu = {
+            "navigation": [
+                {
+                    "title": "Home",
+                    "icon": "sap-icon://home",
+                    "expanded": true,
+                    "key": "home"
+                },
+                {
+                    "title": "Account",
+                    "icon": "sap-icon://settings",
+                    "key": "userAccount"
+                },
+                {
+                    "title": "Things",
+                    "icon": "sap-icon://tree",
+                    "key": "things",
+                    "items": []
+                }
+            ],
+            "fixedNavigation": [
+                {
+                    "title": "Important Links",
+                    "icon": "sap-icon://chain-link",
+                    "key": "links"
+                },
+                {
+                    "title": "Legal",
+                    "icon": "sap-icon://compare",
+                    "key": "legalInfo"
+                }
+            ]
+        };
+
+        for(var i = 0; i < things.length; i++){
+            menu.navigation[2].items.push({
+                "title": things[i].name,
+                "icon": "sap-icon://course-book",
+                "key": things[i].id,
+            }); 
+        }
+    
+        res.json(menu);
+    });
+}

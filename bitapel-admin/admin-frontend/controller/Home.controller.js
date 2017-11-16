@@ -23,6 +23,12 @@ sap.ui.define([
 				if(sessionStorage.uId === undefined || sessionStorage.uId.length === 0){
 					this.getRouter().navTo("login");
 				}
+
+				this.getRouter().getRoute("home").attachMatched(this.handleRouteMatched, this);
+			},
+
+			handleRouteMatched: function(oEvent){
+				console.log("home refresh ???");
 			}
 		});
 });
