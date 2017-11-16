@@ -28,6 +28,30 @@ sap.ui.define([
             return promise;
         },
 
+        saveThing : function (editedThing) {
+
+            var promise = new Promise(
+                function(resolve, reject){
+
+                    $.ajax({
+                        type: "PUT",
+                        url: fabricUrl + "/api/Thing/" + editedThing.id,
+                        dataType   : 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        data: JSON.stringify(editedThing),
+                        success: function(res){
+                            resolve(res);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            reject(errorThrown);
+                        }
+                    });
+                }
+            );
+
+            return promise;
+        },        
+
         getThingById : function(thingId) {
             
             var promise = new Promise(

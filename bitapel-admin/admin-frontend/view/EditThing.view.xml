@@ -85,8 +85,8 @@
 											id="loginButton" 
 											type="Emphasized"
 											text="{i18n>saveThingButtonText}" 
-											press="onCreateThingPress" 
-											icon="sap-icon://add-product"/>
+											press="onSaveThingPress" 
+											icon="sap-icon://save"/>
 									</f:fields>
 								</f:FormElement>
 							</f:formElements>

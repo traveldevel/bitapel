@@ -12,6 +12,8 @@ sap.ui.define([
 			
 			formatter: formatter,
 
+			thingId: null,
+
 			onInit: function () {
 				var oViewModel = new JSONModel({
 					isPhone : Device.system.phone,
@@ -34,13 +36,13 @@ sap.ui.define([
 				
 				var oView = this.getView();
 
-				var thingId = oEvent.getParameters().arguments.id;
+				this.thingId = oEvent.getParameters().arguments.id;
 
 				oView.setBusy(true);
 
 				var that = this;
 
-				ThingService.getThingById(thingId).then(function(thing){
+				ThingService.getThingById(this.thingId).then(function(thing){
 					console.log(thing);
 
 					oView.byId('thingName').setValue(thing.name);
@@ -130,19 +132,13 @@ sap.ui.define([
 				return true;
 			},
 
-			onCreateThingPress: function(oEvent){
+			onSaveThingPress: function(oEvent){
 
 				var oView = this.getView();
-
+				
 				var that = this;
 
 				var bId = sessionStorage.getItem('bId');
-				var uId = sessionStorage.getItem('uId');
-
-				if(bId === undefined || uId === undefined){
-					MessageToast.show("Session is broken !");
-					return;
-				}
 
 				if(this.validateFormData()){
 
@@ -151,10 +147,10 @@ sap.ui.define([
 					var buyDate = oView.byId('thingBuyDate').getSelectedDates()[0].getStartDate();
 					buyDate.setHours(buyDate.getHours() + 5); // timezone bugfix
 	
-					var newThing = {
+					var editedThing = {
 						"$class": "org.bitapel.model.Thing",
-						"id": uId + '-' + now.getTime(),                
-						"owner": "resource:org.bitapel.model.User#id:" + bId,
+						"id": this.thingId,
+						"owner": "resource:org.bitapel.model.User#id:" + bId,                
 						"name": oView.byId('thingName').getValue(),
 						"serial": oView.byId('thingSerial').getValue(),
 						"category": oView.byId('thingCategory').getSelectedItem().getText(),
@@ -165,14 +161,14 @@ sap.ui.define([
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 
 	
-					ThingService.createThing(newThing).then(function(res){
+					ThingService.saveThing(editedThing).then(function(res){
 						console.log(res);
 	
 						oBusyDialog.close();
 
 						MessageToast.show("Thing Saved !");
 
-						that.getRouter().navTo("home");
+						that.getRouter().navTo("things");
 					});
 				}
 			}
