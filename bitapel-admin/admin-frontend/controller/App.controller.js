@@ -32,7 +32,13 @@ sap.ui.define([
 		onItemSelect: function (oEvent) {
 			var oItem = oEvent.getParameter('item');
 			var sKey = oItem.getKey();
-			this.getRouter().navTo(sKey);
+
+			if(sKey.length === 32){
+				this.getRouter().navTo("editThing", { id : sKey});	
+			}
+			else{
+				this.getRouter().navTo(sKey);	
+			}
 		},
 
 		onUserNamePress: function (oEvent) {
