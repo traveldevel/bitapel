@@ -8,8 +8,9 @@ asset Thing identified by id {
   	o String category
   	o String manufacturer
   	o String type
-  	o DateTime buyDate
-  	o DateTime disabledDate optional
+  	o String buyDate
+  	o String disabledDate optional
+	o Long creationTimestamp
 }
 
 participant System identified by id {

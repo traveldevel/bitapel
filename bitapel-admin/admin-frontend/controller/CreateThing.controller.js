@@ -125,7 +125,8 @@ sap.ui.define([
 						"category": oView.byId('thingCategory').getSelectedItem().getText(),
 						"manufacturer": oView.byId('thingManufacturer').getValue(),
 						"type": oView.byId('thingType').getSelectedItem().getText(),
-						"buyDate": buyDate.toISOString()
+						"buyDate": buyDate.toISOString(),
+						"creationTimestamp": now.getTime()
 					}
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 

@@ -6,6 +6,7 @@ var uniqueString = require('unique-string');
 
 var aesEnc = require('./bitapel-encrypt');
 
+// user functions
 module.exports.createUser = exports.createUser = function(newUser, res){
     
     var savedId = newUser._id.toString();
@@ -93,6 +94,67 @@ module.exports.getUser = exports.getUser = function(id){
     return getUserPromise;
 }
 
+// thing functions
+module.exports.getThingsForUserMenu = exports.getThingsForUserMenu = function(bId){
+    var getThingsPromise = new Promise(
+        
+        function(resolve, reject){
+
+            var filter = {
+                where: {
+                    owner: "resource:org.bitapel.model.User#id:" + bId
+                }
+            };
+
+            var filterQuery = encodeURIComponent(JSON.stringify(filter));
+
+            request({
+                url: FABRIC_COMPOSER_REST_URL + "/api/Thing?filter=" + filterQuery,
+                method: "GET"
+            }, function (error, response, body){
+                
+                //console.log(error, body);
+        
+                if (!error && response.statusCode == 200) {
+                    
+                    var things = JSON.parse(body);
+                    //console.log(things);
+                    
+                    resolve(things);
+                }       
+                else{
+                    console.log("getUserThingsForMenu error : ", error);
+                    reject(error);
+                }                         
+        
+            });
+
+        }
+    );
+
+    return getThingsPromise;
+}
+
+module.exports.createThing = exports.createThing = function(uId, newThing, res){
+
+    request({
+        url: FABRIC_COMPOSER_REST_URL + "/api/Thing",
+        method: "POST",
+        json: true,
+        body: newThing
+    }, function (error, response, body){
+        
+        //console.log(error, body);
+
+        if (!error && response.statusCode == 200) {
+            res.json(newThing);
+        }
+        else{
+            console.log("createThing error : ", error);
+        }                
+    });
+}
+
 module.exports.getThingsForUser = exports.getThingsForUser = function(bId){
     var getThingsPromise = new Promise(
         
@@ -116,12 +178,12 @@ module.exports.getThingsForUser = exports.getThingsForUser = function(bId){
                 if (!error && response.statusCode == 200) {
                     
                     var things = JSON.parse(body);
-                    //console.log(users);
+                    //console.log(things);
                     
                     resolve(things);
                 }       
                 else{
-                    console.log("getUser error : ", error);
+                    console.log("getThings error : ", error);
                     reject(error);
                 }                         
         

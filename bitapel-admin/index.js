@@ -38,9 +38,10 @@ app.get('/api/user/which/:id', function (req, res) {
     bitapelService.whichUser(req, res, id);
 });
 
-app.get('/api/user/menu', function (req, res) {
-    var id = req.query.id;
-    bitapelService.getThingsForUser(req, res, id);
+app.get('/api/user/menu/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var uId = req.params.uId;
+    bitapelService.getThingsForUserMenu(req, res, bId, uId);
 });
 
 app.get('/api/user/alerts/:id', function (req, res) {
@@ -94,8 +95,12 @@ app.get('/api/user/:id', function (req, res) {
 
 // Thing api function
 app.post('/api/thing/create', function (req, res) {
-    var thing = {};
-    res.json(thing);
+    
+    var uId = req.query.uId;
+    var newThing = req.body;
+    console.log("newThing : ", newThing);
+
+    bitapelService.createThing(req, res, uId, newThing);
 });
 
 app.post('/api/thing/update', function (req, res) {
@@ -106,6 +111,12 @@ app.post('/api/thing/update', function (req, res) {
 app.get('/api/thing/:id', function (req, res) {
     var thing = {};
     res.json(thing);
+});
+
+app.get('/api/things/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var uId = req.params.uId;
+    bitapelService.getAllThings(req, res, uId, bId);
 });
 
 app.get('/api/thing/:id/transactions/:transactionType', function (req, res) {

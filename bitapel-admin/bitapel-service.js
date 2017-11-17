@@ -44,7 +44,7 @@ module.exports.loginUser = exports.loginUser = function(req, res){
             res.json(err);
         }
 
-        console.log(users);
+        //console.log(users);
 
         var userCount = users.length;
 
@@ -80,16 +80,15 @@ module.exports.loginUser = exports.loginUser = function(req, res){
 module.exports.whichUser = exports.whichUser = function(req, res, id){
     
     fabricService.getUser(id).then(function(user){
-        console.log(user);
+        //console.log(user);
         res.json(user);
     });
 }
 
-
 // thing functions
-module.exports.getThingsForUser = exports.getThingsForUser = function(req, res, bId){
-    fabricService.getThingsForUser(bId).then(function(things){
-        console.log(things);
+module.exports.getThingsForUserMenu = exports.getThingsForUser = function(req, res, bId, uId){
+    fabricService.getThingsForUserMenu(bId).then(function(things){
+        //console.log(things);
         
         var menu = {
             "navigation": [
@@ -127,12 +126,56 @@ module.exports.getThingsForUser = exports.getThingsForUser = function(req, res, 
 
         for(var i = 0; i < things.length; i++){
             menu.navigation[2].items.push({
-                "title": things[i].name,
+                "title": aesEnc.decrypt(things[i].name, uId),
                 "icon": "sap-icon://course-book",
                 "key": things[i].id,
             }); 
         }
     
         res.json(menu);
+    });
+}
+
+module.exports.createThing = exports.createThing = function(req, res, uId, newThing){
+
+    var newThingEnc = newThing;
+    
+    newThingEnc.name = aesEnc.encrypt(newThingEnc.name, uId);
+    newThingEnc.serial = aesEnc.encrypt(newThingEnc.serial, uId);
+    newThingEnc.category = aesEnc.encrypt(newThingEnc.category, uId);
+    newThingEnc.manufacturer = aesEnc.encrypt(newThingEnc.manufacturer, uId);
+    newThingEnc.type = aesEnc.encrypt(newThingEnc.type, uId);
+    newThingEnc.buyDate = aesEnc.encrypt(newThingEnc.buyDate, uId);
+
+    fabricService.createThing(uId, newThingEnc, res);    
+}
+
+module.exports.getAllThings = exports.getAllThings = function(req, res, uId, bId){
+    
+    fabricService.getThingsForUser(bId).then(function(thingsEnc){
+        
+        //console.log(thingsEnc);
+
+        var things = [];
+
+        var n = thingsEnc.length;
+
+        for(var i = 0; i < n; i++){
+
+            var thing = thingsEnc[i];
+
+            thing.name = aesEnc.decrypt(thingsEnc[i].name , uId);
+            thing.serial = aesEnc.decrypt(thingsEnc[i].serial , uId);
+            thing.category = aesEnc.decrypt(thingsEnc[i].category , uId);
+            thing.manufacturer = aesEnc.decrypt(thingsEnc[i].manufacturer , uId);
+            thing.type = aesEnc.decrypt(thingsEnc[i].type , uId);
+            thing.buyDate = aesEnc.decrypt(thingsEnc[i].buyDate , uId);
+
+            //console.log(thing);
+
+            things.push(thing);
+        }
+
+        res.json(things);
     });
 }

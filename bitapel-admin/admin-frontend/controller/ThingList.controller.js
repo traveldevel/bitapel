@@ -35,12 +35,13 @@ sap.ui.define([
 				var oView = this.getView();
 
 				var bId = sessionStorage.getItem('bId');
+				var uId = sessionStorage.getItem('uId');
 
 				var that = this;
 
 				var oBusyDialog = this.getView().byId("busyDialog").open(); 
 
-				ThingService.getThings(bId).then(function(res){
+				ThingService.getThings(bId, uId).then(function(res){
 					
 					//console.log(res);
 					

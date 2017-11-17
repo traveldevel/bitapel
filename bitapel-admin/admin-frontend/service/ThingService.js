@@ -6,12 +6,14 @@ sap.ui.define([
 
         createThing : function (newThing) {
 
+            var uId = sessionStorage.getItem('uId');
+
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "POST",
-                        url: fabricUrl + "/api/Thing",
+                        url: "/api/thing/create?uId=" + uId,
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify(newThing),
@@ -74,22 +76,14 @@ sap.ui.define([
             return promise;
         },
 
-        getThings : function(bId) {
+        getThings : function(bId, uId) {
     
-            var filter = {
-                where: {
-                    owner: "resource:org.bitapel.model.User#id:" + bId
-                }
-            };
-
-            var filterQuery = encodeURIComponent(JSON.stringify(filter));
-
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "GET",
-                        url: fabricUrl + "/api/Thing?filter=" + filterQuery,
+                        url: "/api/things/" + uId + "?bId=" + encodeURIComponent(bId),
                         contentType: 'application/json; charset=UTF-8',
                         success: function(res){
                             var n = res.length;

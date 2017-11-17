@@ -82,7 +82,7 @@ sap.ui.define([
 								sessionStorage.bId = data.id;	
 
 								var sideMenuModel = that.getModel("side");
-								sideMenuModel.loadData("/api/user/menu?id=" + encodeURIComponent(sessionStorage.bId));								
+								sideMenuModel.loadData("/api/user/menu/" + sessionStorage.uId + "?bId=" + encodeURIComponent(sessionStorage.bId));								
 							}
 							else{
 								sessionStorage.clear();
