@@ -4,6 +4,7 @@ var mongooseModels = require('./bitapel-mongoose-models');
 var fabricService = require('./bitapel-fabric-service');
 var aesEnc = require('./bitapel-encrypt');
 
+// user functions
 module.exports.registerUser = exports.registerUser = function(req, res){
 
     var SECRET_KEY = uniqueString();
@@ -13,7 +14,11 @@ module.exports.registerUser = exports.registerUser = function(req, res){
         lastName : req.body.lastName,
         email : req.body.email,
         password : req.body.password,
-        createdAt : new Date()
+        createdAt : new Date(),
+        markedForDeletion: false,
+        willBeDeletedOn: null,
+        emailIsConfirmed: false,
+        encryptedSuccesuful: false
     });
 
     newUser.save(function(err, savedNewUser) {
@@ -80,6 +85,8 @@ module.exports.whichUser = exports.whichUser = function(req, res, id){
     });
 }
 
+
+// thing functions
 module.exports.getThingsForUser = exports.getThingsForUser = function(req, res, bId){
     fabricService.getThingsForUser(bId).then(function(things){
         console.log(things);

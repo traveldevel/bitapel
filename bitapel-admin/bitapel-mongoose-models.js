@@ -7,6 +7,10 @@ module.exports.BitApelUser = exports.BitApelUser = mongoose.model('Users',
         lastName: String,
         email: String,
         password: String,
-        createdAt: Date
+        createdAt: Date,
+        markedForDeletion: Boolean,
+        willBeDeletedOn: Date,
+        emailIsConfirmed: Boolean,
+        encryptedSuccesuful: Boolean
     }
 );

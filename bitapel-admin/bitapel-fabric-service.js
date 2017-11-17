@@ -30,8 +30,9 @@ module.exports.createUser = exports.createUser = function(newUser, res){
             newUser.firstName = aesEnc.encrypt(newUser.firstName, savedId);
             newUser.lastName = aesEnc.encrypt(newUser.lastName, savedId);
             newUser.email = aesEnc.encrypt(newUser.email, savedId);
-            newUser.password = aesEnc.encrypt(newUser.password, "bitapelbitapelbitapel");        
-
+            newUser.password = aesEnc.encrypt(newUser.password, "bitapelbitapelbitapel");     
+            newUser.encryptedSuccesuful = true;
+            
             newUser.save(function (err2, newUserUpdated) {
                 if (err2) {
                     res.json(err2);
