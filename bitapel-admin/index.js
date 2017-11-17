@@ -108,9 +108,11 @@ app.post('/api/thing/update', function (req, res) {
     res.json(thing);
 });
 
-app.get('/api/thing/:id', function (req, res) {
-    var thing = {};
-    res.json(thing);
+app.get('/api/thing/:uId/:tId', function (req, res) {
+    var bId = req.query.bId;
+    var uId = req.params.uId;
+    var tId = req.params.tId;
+    bitapelService.getThing(req, res, uId, bId, tId);
 });
 
 app.get('/api/things/:uId', function (req, res) {

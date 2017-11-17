@@ -54,14 +54,14 @@ sap.ui.define([
             return promise;
         },        
 
-        getThingById : function(thingId) {
+        getThingById : function(thingId, bId, uId) {
             
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "GET",
-                        url: fabricUrl + "/api/Thing/" + thingId,
+                        url: "/api/thing/" + uId + "/" + thingId + "?bId=" + encodeURIComponent(bId),
                         contentType: 'application/json; charset=UTF-8',
                         success: function(res){                   
                             resolve(res);

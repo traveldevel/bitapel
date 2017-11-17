@@ -179,3 +179,22 @@ module.exports.getAllThings = exports.getAllThings = function(req, res, uId, bId
         res.json(things);
     });
 }
+
+module.exports.getThing = exports.getThing = function(req, res, uId, bId, tId){
+    
+    fabricService.getThing(tId, bId).then(function(thingEnc){
+        
+        //console.log(thingEnc);
+
+        var thing = thingEnc;
+
+        thing.name = aesEnc.decrypt(thingEnc.name , uId);
+        thing.serial = aesEnc.decrypt(thingEnc.serial , uId);
+        thing.category = aesEnc.decrypt(thingEnc.category , uId);
+        thing.manufacturer = aesEnc.decrypt(thingEnc.manufacturer , uId);
+        thing.type = aesEnc.decrypt(thingEnc.type , uId);
+        thing.buyDate = aesEnc.decrypt(thingEnc.buyDate , uId);
+
+        res.json(thing);
+    });
+}

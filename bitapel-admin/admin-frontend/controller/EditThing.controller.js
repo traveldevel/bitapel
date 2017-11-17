@@ -38,11 +38,14 @@ sap.ui.define([
 
 				this.thingId = oEvent.getParameters().arguments.id;
 
+				var uId = sessionStorage.getItem("uId");
+				var bId = sessionStorage.getItem("bId");
+
 				oView.setBusy(true);
 
 				var that = this;
 
-				ThingService.getThingById(this.thingId).then(function(thing){
+				ThingService.getThingById(this.thingId, bId, uId).then(function(thing){
 					console.log(thing);
 
 					oView.byId('thingName').setValue(thing.name);
@@ -68,6 +71,7 @@ sap.ui.define([
 					oView.byId('thingCategory').setSelectedKey(selCategory);
 
 					thing.buyDate = new Date(thing.buyDate);
+					thing.creationTimestamp = new Date(thing.creationTimestamp);
 
 					var oCalendar = oView.byId('thingBuyDate');
 					oCalendar.removeAllSelectedDates();

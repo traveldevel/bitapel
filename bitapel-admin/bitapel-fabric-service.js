@@ -194,3 +194,45 @@ module.exports.getThingsForUser = exports.getThingsForUser = function(bId){
 
     return getThingsPromise;
 }
+
+
+module.exports.getThing = exports.getThing = function(tId, bId){
+    var getThingPromise = new Promise(
+        
+        function(resolve, reject){
+
+            var filter = {
+                where: {
+                    id: tId,
+                    owner: "resource:org.bitapel.model.User#id:" + bId
+                }
+            };
+
+            var filterQuery = encodeURIComponent(JSON.stringify(filter));
+
+            request({
+                url: FABRIC_COMPOSER_REST_URL + "/api/Thing/" + tId + "?filter=" + filterQuery,
+                method: "GET"
+            }, function (error, response, body){
+                
+                //console.log(error, body);
+        
+                if (!error && response.statusCode == 200) {
+                    
+                    var thing = JSON.parse(body);
+                    //console.log(thing);
+                    
+                    resolve(thing);
+                }       
+                else{
+                    console.log("getThing error : ", error);
+                    reject(error);
+                }                         
+        
+            });
+
+        }
+    );
+
+    return getThingPromise;
+}
