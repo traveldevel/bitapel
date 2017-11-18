@@ -123,7 +123,7 @@ module.exports.getThingsForUserMenu = exports.getThingsForUserMenu = function(bI
                     resolve(things);
                 }       
                 else{
-                    console.log("getUserThingsForMenu error : ", error);
+                    console.log("getUserThingsForMenu error : ", response);
                     reject(error);
                 }                         
         
@@ -135,7 +135,7 @@ module.exports.getThingsForUserMenu = exports.getThingsForUserMenu = function(bI
     return getThingsPromise;
 }
 
-module.exports.createThing = exports.createThing = function(uId, newThing, res){
+module.exports.createThing = exports.createThing = function(newThing, res){
 
     request({
         url: FABRIC_COMPOSER_REST_URL + "/api/Thing",
@@ -150,7 +150,27 @@ module.exports.createThing = exports.createThing = function(uId, newThing, res){
             res.json(newThing);
         }
         else{
-            console.log("createThing error : ", error);
+            console.log("createThing error : ", response);
+        }                
+    });
+}
+
+module.exports.saveThing = exports.saveThing = function(saveThing, res){
+
+    request({
+        url: FABRIC_COMPOSER_REST_URL + "/api/Thing/" + encodeURI(saveThing.id),
+        method: "PUT",
+        json: true,
+        body: saveThing
+    }, function (error, response, body){
+        
+        //console.log(error, body);
+
+        if (!error && response.statusCode == 200) {
+            res.json(saveThing);
+        }
+        else{
+            console.log("saveThing error : ", response);
         }                
     });
 }
@@ -183,7 +203,7 @@ module.exports.getThingsForUser = exports.getThingsForUser = function(bId){
                     resolve(things);
                 }       
                 else{
-                    console.log("getThings error : ", error);
+                    console.log("getThings error : ", response);
                     reject(error);
                 }                         
         
@@ -194,7 +214,6 @@ module.exports.getThingsForUser = exports.getThingsForUser = function(bId){
 
     return getThingsPromise;
 }
-
 
 module.exports.getThing = exports.getThing = function(tId, bId){
     var getThingPromise = new Promise(
@@ -225,7 +244,7 @@ module.exports.getThing = exports.getThing = function(tId, bId){
                     resolve(thing);
                 }       
                 else{
-                    console.log("getThing error : ", error);
+                    console.log("getThing error : ", response);
                     reject(error);
                 }                         
         

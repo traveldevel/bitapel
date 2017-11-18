@@ -94,18 +94,16 @@ app.get('/api/user/:id', function (req, res) {
 });
 
 // Thing api function
-app.post('/api/thing/create', function (req, res) {
-    
-    var uId = req.query.uId;
+app.post('/api/thing/create/:uId', function (req, res) {
+    var uId = req.params.uId;
     var newThing = req.body;
-    console.log("newThing : ", newThing);
-
     bitapelService.createThing(req, res, uId, newThing);
 });
 
-app.post('/api/thing/update', function (req, res) {
-    var thing = {};
-    res.json(thing);
+app.put('/api/thing/update/:uId', function (req, res) {
+    var uId = req.params.uId;
+    var saveThing = req.body;
+    bitapelService.saveThing(req, res, uId, saveThing);
 });
 
 app.get('/api/thing/:uId/:tId', function (req, res) {
@@ -121,12 +119,12 @@ app.get('/api/things/:uId', function (req, res) {
     bitapelService.getAllThings(req, res, uId, bId);
 });
 
+// Transaction api functions
 app.get('/api/thing/:id/transactions/:transactionType', function (req, res) {
     var list = [];
     res.json(list);
 });
 
-// Transaction api functions
 app.post('/api/transaction/create', function (req, res) {
     var tran = {};
     res.json(tran);

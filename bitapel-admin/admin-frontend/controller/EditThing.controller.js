@@ -13,6 +13,7 @@ sap.ui.define([
 			formatter: formatter,
 
 			thingId: null,
+			selectedThing: null,
 
 			onInit: function () {
 				var oViewModel = new JSONModel({
@@ -47,6 +48,8 @@ sap.ui.define([
 
 				ThingService.getThingById(this.thingId, bId, uId).then(function(thing){
 					console.log(thing);
+
+					that.selectedThing = thing;
 
 					oView.byId('thingName').setValue(thing.name);
 					oView.byId('thingSerial').setValue(thing.serial);
@@ -143,6 +146,7 @@ sap.ui.define([
 				var that = this;
 
 				var bId = sessionStorage.getItem('bId');
+				var uId = sessionStorage.getItem('uId');
 
 				if(this.validateFormData()){
 
@@ -160,12 +164,13 @@ sap.ui.define([
 						"category": oView.byId('thingCategory').getSelectedItem().getText(),
 						"manufacturer": oView.byId('thingManufacturer').getValue(),
 						"type": oView.byId('thingType').getSelectedItem().getText(),
-						"buyDate": buyDate.toISOString()
+						"buyDate": buyDate.toISOString(),
+						"creationTimestamp": this.selectedThing.creationTimestamp.getTime()
 					}
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 
 	
-					ThingService.saveThing(editedThing).then(function(res){
+					ThingService.saveThing(uId, editedThing).then(function(res){
 						console.log(res);
 	
 						oBusyDialog.close();

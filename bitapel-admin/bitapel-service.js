@@ -140,15 +140,34 @@ module.exports.createThing = exports.createThing = function(req, res, uId, newTh
 
     var newThingEnc = newThing;
     
-    newThingEnc.name = aesEnc.encrypt(newThingEnc.name, uId);
-    newThingEnc.serial = aesEnc.encrypt(newThingEnc.serial, uId);
-    newThingEnc.category = aesEnc.encrypt(newThingEnc.category, uId);
-    newThingEnc.manufacturer = aesEnc.encrypt(newThingEnc.manufacturer, uId);
-    newThingEnc.type = aesEnc.encrypt(newThingEnc.type, uId);
-    newThingEnc.buyDate = aesEnc.encrypt(newThingEnc.buyDate, uId);
+    newThingEnc.name = aesEnc.encrypt(newThing.name, uId);
+    newThingEnc.serial = aesEnc.encrypt(newThing.serial, uId);
+    newThingEnc.category = aesEnc.encrypt(newThing.category, uId);
+    newThingEnc.manufacturer = aesEnc.encrypt(newThing.manufacturer, uId);
+    newThingEnc.type = aesEnc.encrypt(newThing.type, uId);
+    newThingEnc.buyDate = aesEnc.encrypt(newThing.buyDate, uId);
+
+    console.log(newThingEnc);
 
     fabricService.createThing(uId, newThingEnc, res);    
 }
+
+module.exports.saveThing = exports.saveThing = function(req, res, uId, saveThing){
+
+    var saveThingEnc = saveThing;
+    
+    saveThingEnc.name = aesEnc.encrypt(saveThingEnc.name, uId);
+    saveThingEnc.serial = aesEnc.encrypt(saveThingEnc.serial, uId);
+    saveThingEnc.category = aesEnc.encrypt(saveThingEnc.category, uId);
+    saveThingEnc.manufacturer = aesEnc.encrypt(saveThingEnc.manufacturer, uId);
+    saveThingEnc.type = aesEnc.encrypt(saveThingEnc.type, uId);
+    saveThingEnc.buyDate = aesEnc.encrypt(saveThingEnc.buyDate, uId);
+
+    console.log(saveThingEnc);
+
+    fabricService.saveThing(saveThingEnc, res);
+}
+    
 
 module.exports.getAllThings = exports.getAllThings = function(req, res, uId, bId){
     

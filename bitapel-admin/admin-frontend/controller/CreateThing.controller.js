@@ -107,6 +107,9 @@ sap.ui.define([
 				var that = this;
 
 				var bId = sessionStorage.getItem('bId');
+
+				var uId = sessionStorage.getItem('uId');
+
 				var newId = this.newId();
 
 				if(this.validateFormData()){
@@ -131,7 +134,7 @@ sap.ui.define([
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 
 	
-					ThingService.createThing(newThing).then(function(res){
+					ThingService.createThing(uId, newThing).then(function(res){
 						console.log(res);
 	
 						oBusyDialog.close();
