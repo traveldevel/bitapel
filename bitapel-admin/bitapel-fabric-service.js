@@ -137,6 +137,8 @@ module.exports.getThingsForUserMenu = exports.getThingsForUserMenu = function(bI
 
 module.exports.createThing = exports.createThing = function(newThing, res){
 
+    //console.log(newThing);
+
     request({
         url: FABRIC_COMPOSER_REST_URL + "/api/Thing",
         method: "POST",
@@ -150,12 +152,14 @@ module.exports.createThing = exports.createThing = function(newThing, res){
             res.json(newThing);
         }
         else{
-            console.log("createThing error : ", response);
+            console.log("createThing error : ", body);
         }                
     });
 }
 
 module.exports.saveThing = exports.saveThing = function(saveThing, res){
+
+    //console.log(saveThing);
 
     request({
         url: FABRIC_COMPOSER_REST_URL + "/api/Thing/" + encodeURI(saveThing.id),

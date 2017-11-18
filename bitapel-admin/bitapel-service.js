@@ -147,9 +147,9 @@ module.exports.createThing = exports.createThing = function(req, res, uId, newTh
     newThingEnc.type = aesEnc.encrypt(newThing.type, uId);
     newThingEnc.buyDate = aesEnc.encrypt(newThing.buyDate, uId);
 
-    console.log(newThingEnc);
+    //console.log(newThingEnc);
 
-    fabricService.createThing(uId, newThingEnc, res);    
+    fabricService.createThing(newThingEnc, res);    
 }
 
 module.exports.saveThing = exports.saveThing = function(req, res, uId, saveThing){
@@ -163,7 +163,7 @@ module.exports.saveThing = exports.saveThing = function(req, res, uId, saveThing
     saveThingEnc.type = aesEnc.encrypt(saveThingEnc.type, uId);
     saveThingEnc.buyDate = aesEnc.encrypt(saveThingEnc.buyDate, uId);
 
-    console.log(saveThingEnc);
+    //console.log(saveThingEnc);
 
     fabricService.saveThing(saveThingEnc, res);
 }

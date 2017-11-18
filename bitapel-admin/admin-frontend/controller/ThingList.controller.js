@@ -51,6 +51,9 @@ sap.ui.define([
 
 					oBusyDialog.close();
 				});
+
+				var sideMenuModel = that.getModel("side");
+				sideMenuModel.loadData("/api/user/menu/" + sessionStorage.uId + "?bId=" + encodeURIComponent(sessionStorage.bId));
 			},
 
 			onThingSelected: function(oEvent){

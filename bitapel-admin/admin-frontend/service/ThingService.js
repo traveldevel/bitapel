@@ -85,18 +85,14 @@ sap.ui.define([
                         contentType: 'application/json; charset=UTF-8',
                         success: function(res){
                             var n = res.length;
-                            
-                            for(var i = 0; i < n; i++){
-                                res[i].buyDate = Date.parse(res[i].buyDate);
-                            }
  
                             res.sort(function compare(a, b) {
 
-                                if (a.buyDate < b.buyDate){
+                                if (parseInt(a.creationTimestamp) < parseInt(b.creationTimestamp)){
                                     return 1;  
                                 }
                                   
-                                if (a.buyDate > b.buyDate){
+                                if (parseInt(a.creationTimestamp) > parseInt(b.creationTimestamp)){
                                     return -1;  
                                 }
 
