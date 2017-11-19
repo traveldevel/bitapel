@@ -27,11 +27,11 @@
 				<Text text="{i18n>TotalWorkingUnitsText}" />
 			</Column>
 			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
-				<Text text="{i18n>InfoText}" />
-			</Column>		
-			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
 				<Text text="{i18n>DetailsText}" />
-			</Column>								
+			</Column>				
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>InfoText}" />
+			</Column>									
 			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
 				<Text text="{i18n>PriceText}" />
 			</Column>								

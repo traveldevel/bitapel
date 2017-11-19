@@ -301,3 +301,44 @@ module.exports.getThingBuyLog = exports.getThingBuyLog = function(tId, bId){
 
     return getThingLogPromise;
 }
+
+module.exports.getThingSaleLog = exports.getThingSaleLog = function(tId, bId){
+    var getThingLogPromise = new Promise(
+        
+        function(resolve, reject){
+
+            var filter = {
+                where: {
+                    thing: "resource:org.bitapel.model.Thing#id:" + tId,
+                    owner: "resource:org.bitapel.model.User#id:" + bId
+                }
+            };
+
+            var filterQuery = encodeURIComponent(JSON.stringify(filter));
+
+            request({
+                url: FABRIC_COMPOSER_REST_URL + "/api/SaleEvent" + "?filter=" + filterQuery,
+                method: "GET"
+            }, function (error, response, body){
+                
+                //console.log(error, body);
+        
+                if (!error && response.statusCode == 200) {
+                    
+                    var records = JSON.parse(body);
+                    //console.log(thing);
+                    
+                    resolve(records);
+                }       
+                else{
+                    console.log("getThing Sale Events error : ", response);
+                    reject(error);
+                }                         
+        
+            });
+
+        }
+    );
+
+    return getThingLogPromise;
+}

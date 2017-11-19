@@ -228,46 +228,73 @@ module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, r
     
     fabricService.getThingBuyLog(tId, bId).then(function(buyRecords){
         
-        //console.log(buyRecords);
+        fabricService.getThingSaleLog(tId, bId).then(function(saleRecords){
 
-        var allRecords = [];
+            //console.log(buyRecords);
 
-        var bn = buyRecords.length;
-        for(var i = 0; i < bn; i++){
-            
-            var record = buyRecords[i];
+            var allRecords = [];
 
-            record.date = record.buyDate;
-            delete record.buyDate;
+            // translate buy records
+            var bn = buyRecords.length;
+            for(var i = 0; i < bn; i++){
+                
+                var record = buyRecords[i];
 
-            if(record.buyDetails !== undefined && record.buyDetails !== null){
-                record.details = record.buyDetails;
+                record.date = record.buyDate;
+                delete record.buyDate;
+
+                if(record.buyDetails !== undefined && record.buyDetails !== null){
+                    record.details = record.buyDetails;
+                }
+                else{
+                    record.details = '';
+                }
+                delete record.buyDetails;
+
+                if(record.buyFrom !== undefined && record.buyFrom !== null){
+                    record.info = record.buyFrom;
+                }
+                else{
+                    record.info = '';
+                }
+                delete record.buyFrom;       
+                
+                if(record.buyPrice !== undefined && record.buyPrice !== null){
+                    record.price = record.buyPrice + " " + record.buyPriceCurrency;
+                }
+                else{
+                    record.price = '';
+                }
+                delete record.buyPrice;                
+                delete record.buyPriceCurrency;
+
+                allRecords.push(record);
             }
-            else{
+
+            // translate sale records
+            var sn = saleRecords.length;
+            for(var i = 0; i < sn; i++){
+                
+                var record = saleRecords[i];
+
+                record.date = record.saleDate;
+                delete record.saleDate;
+
+                if(record.saleDetails !== undefined && record.saleDetails !== null){
+                    record.details = record.saleDetails;
+                }
+                else{
+                    record.details = '';
+                }
+                delete record.saleDetails;    
+                
                 record.info = '';
-            }
-            delete record.buyDetails;
-
-            if(record.buyFrom !== undefined && record.buyFrom !== null){
-                record.info = record.buyFrom;
-            }
-            else{
-                record.info = '';
-            }
-            delete record.buyFrom;       
-            
-            if(record.buyPrice !== undefined && record.buyPrice !== null){
-                record.price = record.buyPrice + " " + record.buyPriceCurrency;
-            }
-            else{
                 record.price = '';
+
+                allRecords.push(record);
             }
-            delete record.buyPrice;                
-            delete record.buyPriceCurrency;
 
-            allRecords.push(record);
-        }
-
-        res.json(allRecords);
+            res.json(allRecords);
+        });
     });
 }
