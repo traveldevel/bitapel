@@ -57,7 +57,7 @@ sap.ui.define([
 			},
 
 			onThingSelected: function(oEvent){
-				console.log(oEvent);
+				//console.log(oEvent);
 
 				var listItem = oEvent.getParameter("listItem"); 
 				var sPath = listItem.getBindingContextPath();
@@ -68,6 +68,24 @@ sap.ui.define([
 				console.log(itemValue);
 
 				this.getRouter().navTo("editThing", { id : itemValue.id });
+			},
+
+			onHistoryThingPress: function(oEvent){
+				//console.log(oEvent);
+
+				var oButton = oEvent.getSource();
+				console.log(oButton.data("thingId"));
+
+				this.getRouter().navTo("thingHistory", { id : oButton.data("thingId") });
+			},
+
+			onEditThingPress: function(oEvent){
+				//console.log(oEvent);
+				
+				var oButton = oEvent.getSource();
+				console.log(oButton.data("thingId"));
+
+				this.getRouter().navTo("editThing", { id : oButton.data("thingId") });
 			}
 		});
 });

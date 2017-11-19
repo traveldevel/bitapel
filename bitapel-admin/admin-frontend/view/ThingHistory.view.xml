@@ -1,0 +1,44 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.ThingHistory"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		
+		<Text text=""/>
+		<Toolbar id="headerToolbar">
+			<Title id="historyTitle" text="{i18n>historyForThingTitle}" level="H4" titleStyle="H4"/>
+			<ToolbarSpacer />
+		</Toolbar>
+
+		<IconTabBar
+			id="historyTabs"
+			headerMode="Inline"
+			upperCase="true"
+			expanded="{device>/isNoPhone}"
+			class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="{i18n>historyBuySaleText}" count="4321">
+					<Text text="Buy and Sale go here ..." />
+				</IconTabFilter>			
+				<IconTabFilter text="{i18n>historyInfoText}" count="3">
+					<Text text="Info content goes here ..." />
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>historyMaintenanceText}" count="4321">
+					<Text text="Maintenance go here ..." />
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>historyDamageText}" count="3">
+					<Text text="Damage content goes here ..." />
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>historyRepairText}" count="3">
+					<Text text="Repair content goes here ..." />
+				</IconTabFilter>				
+			</items>
+		</IconTabBar>
+
+		<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BusyDialog"/>
+	</Page>
+</mvc:View>

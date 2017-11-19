@@ -129,7 +129,7 @@
 					"target": "editThing"
 				},
 				{
-					"pattern": "thingHistory",
+					"pattern": "thingHistory/{id}",
 					"name": "thingHistory",
 					"target": "thingHistory"
 				},

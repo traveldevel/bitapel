@@ -5,6 +5,7 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:u="sap.ui.unified"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	xmlns:core="sap.ui.core">
 	<Page showHeader="false" busyIndicatorDelay="1">
 		
@@ -36,7 +37,13 @@
 				</Column>
 				<Column minScreenWidth="Desktop" hAlign="Middle">
 					<Text text="{i18n>thingTypeText}"/>
-				</Column>				
+				</Column>	
+				<Column minScreenWidth="Phone" hAlign="Middle">
+					<Text text="{i18n>thingHistoryText}"/>
+				</Column>	
+				<Column minScreenWidth="Phone" hAlign="Middle">
+					<Text text="{i18n>thingEditText}"/>
+				</Column>												
 			</columns>
 			<items>
 				<ColumnListItem type="Navigation">
@@ -46,6 +53,15 @@
 						<Text text="{userThings>manufacturer}"/>
 						<Text text="{userThings>category}"/>
 						<Text text="{userThings>type}"/>
+						<Button 
+							id="historyButton" 
+							app:thingId="{userThings>id}"
+							press="onHistoryThingPress" 
+							icon="sap-icon://survey"/>
+						<Button id="editButton" 
+							app:thingId="{userThings>id}"
+							press="onEditThingPress" 
+							icon="sap-icon://edit"/>
 					</cells>
 				</ColumnListItem>
 			</items>
