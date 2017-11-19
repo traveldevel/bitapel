@@ -1,33 +1,80 @@
 <mvc:View
 	controllerName="history.for.every.thing.ui.controller.UserAccount"
 	xmlns="sap.m"
-	xmlns:form="sap.ui.commons.form"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
 	<Page showHeader="false" busyIndicatorDelay="1">
-		<form:SimpleForm maxContainerCols="3" layout="ResponsiveLayout">
-			<form:content>
-				<Label text="{i18n>firstName}" labelFor="firstName"/>
-				<Input id="firstName" type="Text" width="50%"/>
+	
+			<VBox class="sapUiSmallMargin">
+				
+				<f:Form 
+					id="FormToolbar"
+					editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout />
+					</f:layout>
+					<f:toolbar>
+						<Toolbar id="headerToolbar">
+							<Title id="formTitle" text="{i18n>accountEditFormTitle}" level="H4" titleStyle="H4"/>
+							<ToolbarSpacer />
+						</Toolbar>
+					</f:toolbar>					
+					<f:formContainers>
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
+								<f:FormElement label="{i18n>accountEmailText}">
+									<f:fields>
+										<Input id="email" type="Text" editable="false"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>accountFirstNameText}">
+									<f:fields>
+										<Input id="firstName" type="Text"/>
+									</f:fields>
+								</f:FormElement>	
+								<f:FormElement label="{i18n>accountLastNameText}">
+									<f:fields>
+										<Input id="lastName" type="Text"/>
+									</f:fields>
+								</f:FormElement>															
+								<f:FormElement label="{i18n>accountPasswordText}">
+									<f:fields>
+										<Input id="password" type="Text"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>accountConfirmPasswordText}">
+									<f:fields>
+										<Input id="confirmPassword" type="Text"/>
+									</f:fields>
+								</f:FormElement>																				
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements></f:formElements>
+						</f:FormContainer>	
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
+								<f:FormElement label="">
+									<f:fields>
+										<Button 
+											id="saveButton" 
+											type="Emphasized"
+											text="{i18n>saveAccountButtonText}" 
+											press="onSaveAccountPress" 
+											icon="sap-icon://save"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>												
+					</f:formContainers>
+				</f:Form>
+		
+		</VBox>
 
-				<Label text="{i18n>lastName}" labelFor="lastName"/>
-				<Input id="lastName" type="Text" width="50%"/>
+		<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BusyDialog"/>
 
-				<Label text="{i18n>email}" labelFor="email"/>
-				<Input id="email" type="Text" width="50%"/>		
-
-				<Label text="{i18n>password}" labelFor="password"/>
-				<Input id="password" type="Text" width="50%"/>	
-
-				<Label text="{i18n>confirmPassword}" labelFor="confirmPassword"/>
-				<Input id="confirmPassword" type="Text" width="50%"/>									
-
-				<Label text="" labelFor="saveUserAccountButton"/>
-				<Button id="saveUserAccountButton" 
-					text="{i18n>saveUserAccountButtonText}" 
-					press="onSaveUserAccountButtonPress" 
-					icon="sap-icon://save" 
-					width="50%"/>
-			</form:content>
-		</form:SimpleForm>
 	</Page>
 </mvc:View>

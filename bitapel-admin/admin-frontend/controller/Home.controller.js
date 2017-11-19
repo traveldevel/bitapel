@@ -29,6 +29,10 @@ sap.ui.define([
 
 			handleRouteMatched: function(oEvent){
 				console.log("home refresh ???");
+			},
+
+			onUserAccountPress: function(oEvent){
+				this.getRouter().navTo("userAccount", {id : sessionStorage.getItem("uId")});
 			}
 		});
 });

@@ -82,7 +82,7 @@
 								<f:FormElement label="">
 									<f:fields>
 										<Button 
-											id="loginButton" 
+											id="saveButton" 
 											type="Emphasized"
 											text="{i18n>saveThingButtonText}" 
 											press="onSaveThingPress" 

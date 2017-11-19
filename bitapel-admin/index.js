@@ -33,9 +33,9 @@ app.post('/api/user/login', function (req, res) {
     bitapelService.loginUser(req, res);
 });
 
-app.get('/api/user/which/:id', function (req, res) {
-    var id = req.params.id;
-    bitapelService.whichUser(req, res, id);
+app.get('/api/user/which/:uId', function (req, res) {
+    var uId = req.params.uId;
+    bitapelService.whichUser(req, res, uId);
 });
 
 app.get('/api/user/menu/:uId', function (req, res) {
@@ -44,7 +44,7 @@ app.get('/api/user/menu/:uId', function (req, res) {
     bitapelService.getThingsForUserMenu(req, res, bId, uId);
 });
 
-app.get('/api/user/alerts/:id', function (req, res) {
+app.get('/api/user/alerts/:uId', function (req, res) {
     var id = req.params.id;
 
     var alerts = {
@@ -88,9 +88,16 @@ app.get('/api/user/alerts/:id', function (req, res) {
     res.json(alerts);
 });
 
-app.get('/api/user/:id', function (req, res) {
-    var user = {};
-    res.json(user);
+app.get('/api/user/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var uId = req.params.uId;
+    mongoService.getUserById(req, res, uId);
+});
+
+app.put('/api/user/update/:uId', function (req, res) {
+    var uId = req.params.uId;
+    var saveUser = req.body;
+    mongoService.updateUser(req, res, uId, saveUser);
 });
 
 // Thing api function

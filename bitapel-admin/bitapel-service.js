@@ -48,6 +48,7 @@ module.exports.loginUser = exports.loginUser = function(req, res){
 
         var userCount = users.length;
 
+        var found = false;
         for(var i = 0; i < userCount; i++){
 
             var d_pass = aesEnc.decrypt(users[i].password, "bitapelbitapelbitapel"); 
@@ -68,11 +69,16 @@ module.exports.loginUser = exports.loginUser = function(req, res){
                     users[i].firstName = aesEnc.decrypt(users[i].firstName, savedId); 
                     users[i].lastName = aesEnc.decrypt(users[i].lastName, savedId); 
 
+                    found = true;
                     res.json(users[i]);
 
                     break;
                 }
             }
+        }
+
+        if(!found){
+            res.json({});
         }
     });
 }

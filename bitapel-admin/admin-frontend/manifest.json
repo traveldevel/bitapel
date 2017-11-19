@@ -94,7 +94,7 @@
 					"target": "home"
 				},
 				{
-					"pattern": "userAccount",
+					"pattern": "userAccount/{id}",
 					"name": "userAccount",
 					"target": "userAccount"
 				},	

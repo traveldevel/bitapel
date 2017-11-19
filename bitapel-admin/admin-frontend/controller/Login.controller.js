@@ -61,33 +61,42 @@ sap.ui.define([
                     async: true, 
                     success : function(data, textStatus, jqXHR) {
 						
-						sessionStorage.uId = data._id;
-						sessionStorage.email = data.email;
-						sessionStorage.firstName = data.firstName;
-						sessionStorage.lastName = data.lastName;
+						console.log("login response :", data);
 
-						var userModel = that.getModel("loggedUser");
-						userModel.setData(data);
-						that.setModel(userModel, "loggedUser");
+						if(data._id !== undefined && data._id.length > 0){
+							sessionStorage.uId = data._id;
+							sessionStorage.email = data.email;
+							sessionStorage.firstName = data.firstName;
+							sessionStorage.lastName = data.lastName;
 
-						var alertsModel = that.getModel("alerts");
-						alertsModel.loadData("/api/user/alerts/" + data._id);						
+							var userModel = that.getModel("loggedUser");
+							userModel.setData(data);
+							that.setModel(userModel, "loggedUser");
 
-						oView.setBusy(false);
-						that.getRouter().navTo('home');		
+							var alertsModel = that.getModel("alerts");
+							alertsModel.loadData("/api/user/alerts/" + data._id);						
 
-						$.getJSON("/api/user/which/" + data._id, function(data){
+							oView.setBusy(false);
+							that.getRouter().navTo('home');		
 
-							if(data.id !== undefined){
-								sessionStorage.bId = data.id;	
+							$.getJSON("/api/user/which/" + data._id, function(data){
 
-								var sideMenuModel = that.getModel("side");
-								sideMenuModel.loadData("/api/user/menu/" + sessionStorage.uId + "?bId=" + encodeURIComponent(sessionStorage.bId));								
-							}
-							else{
-								sessionStorage.clear();
-							}
-						});
+								if(data.id !== undefined){
+									sessionStorage.bId = data.id;	
+
+									var sideMenuModel = that.getModel("side");
+									sideMenuModel.loadData("/api/user/menu/" + sessionStorage.uId + "?bId=" + encodeURIComponent(sessionStorage.bId));								
+								}
+								else{
+									sessionStorage.clear();
+								}
+							});
+						}
+						else
+						{
+							MessageToast.show("Login Error");
+							oView.setBusy(false);
+						}
                     },
                     error : function(data, textStatus, jqXHR) {
 

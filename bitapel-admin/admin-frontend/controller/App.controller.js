@@ -33,10 +33,19 @@ sap.ui.define([
 			var oItem = oEvent.getParameter('item');
 			var sKey = oItem.getKey();
 
+			var navigated = false;
+
 			if(sKey.length === 32){
+				navigated = true;
 				this.getRouter().navTo("editThing", { id : sKey});	
 			}
-			else{
+
+			if(sKey === 'userAccount'){
+				navigated = true;
+				this.getRouter().navTo(sKey, { id : sessionStorage.uId});	
+			}			
+
+			if(!navigated){
 				this.getRouter().navTo(sKey);	
 			}
 		},

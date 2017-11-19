@@ -42,7 +42,7 @@
 						<Text
 							text="{i18n>administrationContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>userAccountLinkText}" href="#/userAccount"/>
+						<Link text="{i18n>userAccountLinkText}" press="onUserAccountPress"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
 				<l:BlockLayoutCell
