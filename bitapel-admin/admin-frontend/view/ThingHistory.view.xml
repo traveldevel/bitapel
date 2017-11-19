@@ -22,7 +22,7 @@
 			class="sapUiResponsiveContentPadding">
 			<items>
 				<IconTabFilter text="{i18n>historyBuySaleText}" count="4321">
-					<Text text="Buy and Sale go here ..." />
+					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BuyAndSaleList"/>
 				</IconTabFilter>			
 				<IconTabFilter text="{i18n>historyInfoText}" count="3">
 					<Text text="Info content goes here ..." />

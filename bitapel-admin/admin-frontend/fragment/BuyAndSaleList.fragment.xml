@@ -1,0 +1,54 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Table 
+		id="thingBuyAndSaleHistoryTable"
+		inset="false"
+		items="{
+			path: 'selectedThingHistory>/BuyAndSale',
+			sorter: {
+				path: 'timestamp'
+			}
+		}">
+		<columns>
+			<Column>
+				<Text text="Transaction" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>TimestampText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>RecordedByText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>DateText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>TotalWorkingUnitsText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>InfoText}" />
+			</Column>		
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>DetailsText}" />
+			</Column>								
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>PriceText}" />
+			</Column>								
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{selectedThingHistory>transactionId}" />
+					<Text text="{selectedThingHistory>timestamp}" />
+					<Text text="{selectedThingHistory>recordedBy}" />
+					<Text text="{selectedThingHistory>date}" />
+					<Text text="{selectedThingHistory>totalWorkingUnits} {selectedThingHistory>totalWorkingUnitType}" />
+					<Text text="{selectedThingHistory>details}" />
+					<Text text="{selectedThingHistory>info}" />
+					<Text text="{selectedThingHistory>price}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

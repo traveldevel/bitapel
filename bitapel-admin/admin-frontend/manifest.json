@@ -71,6 +71,10 @@
 			"userThings": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/userThings.json"
+			},
+			"selectedThingHistory": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/selectedThingHistory.json"
 			}						
 		},
 		"routing": {

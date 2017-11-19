@@ -127,9 +127,11 @@ app.get('/api/things/:uId', function (req, res) {
 });
 
 // Transaction api functions
-app.get('/api/thing/:id/transactions/:transactionType', function (req, res) {
-    var list = [];
-    res.json(list);
+app.get('/api/thing/buyandsale/:tId/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    bitapelService.getThingBuyAndSell(req, res, uId, tId, uId, bId);
 });
 
 app.post('/api/transaction/create', function (req, res) {

@@ -1,16 +1,15 @@
 namespace org.bitapel.model
 
 asset Thing identified by id {
-  	o String id
-    --> User owner
-	o String name
-  	o String serial
-  	o String category
-  	o String manufacturer
-  	o String type
-  	o String buyDate
-  	o String disabledDate optional
-	o Long creationTimestamp
+  o String id
+  --> User owner
+  o String name
+  o String serial
+  o String category
+  o String manufacturer
+  o String type
+  o String buyDate
+  o String disabledDate optional
 }
 
 participant System identified by id {
@@ -22,70 +21,70 @@ participant User identified by id {
 }
 
 transaction BuyEvent {
-  	--> Thing resource
-    --> User owner
-  	o String recordedBy
-  	o Integer totalWorkingUnits
-  	o String totalWorkingUnitType  
-    o DateTime buyDate
-    o String buyFrom
-    o Integer buyPrice
-    o String buyPriceCurrency
-    o String buyDetails
+  --> Thing thing
+  --> User owner
+  o String recordedBy
+  o Integer totalWorkingUnits
+  o String totalWorkingUnitType  
+  o DateTime buyDate
+  o String buyFrom
+  o Integer buyPrice
+  o String buyPriceCurrency
+  o String buyDetails
 }
 
 transaction InfoEvent {
-  	--> Thing resource
-    --> User owner
-  	o String recordedBy
-  	o Integer totalWorkingUnits
-  	o String totalWorkingUnitType  
-    o DateTime infoDate
-    o String infoDetails
+  --> Thing thing
+  --> User owner
+  o String recordedBy
+  o Integer totalWorkingUnits
+  o String totalWorkingUnitType  
+  o DateTime infoDate
+  o String infoDetails
 }
 
 transaction MaintenanceEvent {
-  	--> Thing resource
-    --> User owner
-  	o String recordedBy
-  	o Integer totalWorkingUnits
-  	o String totalWorkingUnitType
-    o DateTime maintenanceDate
-    o Integer maintenanceEntity
-    o Integer maintenancePrice
-    o String maintenancePriceCurrency    
-    o String maintenanceDetails
+  --> Thing thing
+  --> User owner
+  o String recordedBy
+  o Integer totalWorkingUnits
+  o String totalWorkingUnitType
+  o DateTime maintenanceDate
+  o Integer maintenanceEntity
+  o Integer maintenancePrice
+  o String maintenancePriceCurrency    
+  o String maintenanceDetails
 }
 
 transaction DamageEvent {
-  	--> Thing resource
-    --> User owner
-  	o String recordedBy
-  	o Integer totalWorkingUnits
-  	o String totalWorkingUnitType
-  	o DateTime damageDate
-    o String damageDetails
+  --> Thing thing
+  --> User owner
+  o String recordedBy
+  o Integer totalWorkingUnits
+  o String totalWorkingUnitType
+  o DateTime damageDate
+  o String damageDetails
 }
 
 transaction RepairEvent {
-  	--> Thing resource
-    --> User owner
-  	o String recordedBy
-  	o Integer totalWorkingUnits
-  	o String totalWorkingUnitType
-	o DateTime repairDate
-    o Integer repairEntity
-    o Integer repairPrice
-    o String repairPriceCurrency        
-    o String repairDetails
+  --> Thing thing
+  --> User owner
+  o String recordedBy
+  o Integer totalWorkingUnits
+  o String totalWorkingUnitType
+  o DateTime repairDate
+  o Integer repairEntity
+  o Integer repairPrice
+  o String repairPriceCurrency        
+  o String repairDetails
 }
 
 transaction SaleEvent {
-  	--> Thing resource
-    --> User owner
-  	o String recordedBy
-  	o Integer totalWorkingUnits
-  	o String totalWorkingUnitType
+  --> Thing thing
+  --> User owner
+  o String recordedBy
+  o Integer totalWorkingUnits
+  o String totalWorkingUnitType
 	o DateTime saleDate
 	o String saleDetails
 }
