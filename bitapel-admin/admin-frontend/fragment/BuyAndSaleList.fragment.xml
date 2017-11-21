@@ -14,6 +14,9 @@
 			<Column>
 				<Text text="Transaction" />
 			</Column>
+			<Column>
+				<Text text="Type" />
+			</Column>			
 			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="{i18n>TimestampText}" />
 			</Column>
@@ -40,6 +43,7 @@
 			<ColumnListItem>
 				<cells>
 					<Text text="{selectedThingHistory>transactionId}" />
+					<Text text="{selectedThingHistory>type}" />
 					<Text text="{selectedThingHistory>timestamp}" />
 					<Text text="{selectedThingHistory>recordedBy}" />
 					<Text text="{selectedThingHistory>date}" />

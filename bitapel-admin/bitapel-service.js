@@ -240,6 +240,7 @@ module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, r
                 
                 var record = buyRecords[i];
 
+                record.type = "Buy";
                 record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
                 record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
                 record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
@@ -286,6 +287,13 @@ module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, r
                 
                 var record = saleRecords[i];
 
+                record.type = "Sale";
+                record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
+                record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
+                record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
+                record.saleDate = aesEnc.decrypt(record.saleDate, uId);
+                record.saleDetails = aesEnc.decrypt(record.saleDetails, uId); 
+
                 record.date = record.saleDate;
                 delete record.saleDate;
 
@@ -329,6 +337,21 @@ module.exports.createBuyEvent = exports.createBuyEvent = function(req, res, uId,
     //console.log(newEventEnc);
 
     fabricService.createBuyEvent(newEventEnc, res);    
+}
+
+module.exports.createSaleEvent = exports.createSaleEvent = function(req, res, uId, bId, newEvent){
+    
+    var newEventEnc = newEvent;
+    
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, uId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, uId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, uId);
+    newEventEnc.saleDate = aesEnc.encrypt(newEvent.saleDate, uId);
+    newEventEnc.saleDetails = aesEnc.encrypt(newEvent.saleDetails, uId); 
+
+    //console.log(newEventEnc);
+
+    fabricService.createSaleEvent(newEventEnc, res);    
 }
 
 module.exports.createInfoEvent = exports.createInfoEvent = function(req, res, tId, uId, bId, newEvent){

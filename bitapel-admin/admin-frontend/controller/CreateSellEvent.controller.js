@@ -8,7 +8,7 @@ sap.ui.define([
 		'history/for/every/thing/ui/service/EventService',
 	], function (BaseController, JSONModel, MessageToast, DateRange, Device, formatter, EventService) {
 		"use strict";
-		return BaseController.extend("history.for.every.thing.ui.controller.CreateBuyEvent", {
+		return BaseController.extend("history.for.every.thing.ui.controller.CreateSellEvent", {
 			
 			formatter: formatter,
 
@@ -29,7 +29,7 @@ sap.ui.define([
 					this.getRouter().navTo("login");
 				}
 
-				this.getRouter().getRoute("createBuyEvent").attachMatched(this.handleRouteMatched, this);
+				this.getRouter().getRoute("createSellEvent").attachMatched(this.handleRouteMatched, this);
 			},
 
 			handleRouteMatched: function(oEvent){
@@ -41,12 +41,9 @@ sap.ui.define([
 				oView.byId('recordedBy').setValue('');
 				oView.byId('totalWorkingUnits').setValue('');
 				oView.byId('totalWorkingUnitType').setSelectedKey('');
-				oView.byId('buyFrom').setValue('');
-				oView.byId('buyPrice').setValue('');
-				oView.byId('buyPriceCurrency').setValue('');
-				oView.byId('buyDetails').setValue('');
+				oView.byId('sellDetails').setValue('');
 
-				var oCalendar = oView.byId('buyDate');
+				var oCalendar = oView.byId('SellDate');
 				oCalendar.removeAllSelectedDates();
 				oCalendar.addSelectedDate(new DateRange({startDate: new Date()}));
 			},
@@ -57,8 +54,8 @@ sap.ui.define([
 
 				var errors = "";
 
-				if(oView.byId('buyDate').getSelectedDates().length === 0){
-					errors += "Missing Buy Date\r\n";
+				if(oView.byId('sellDate').getSelectedDates().length === 0){
+					errors += "Missing Sell Date\r\n";
 				}
 
 				if(oView.byId('recordedBy').getValue().length === 0){
@@ -94,36 +91,33 @@ sap.ui.define([
 
 				if(this.validateFormData()){
 
-					var now = new Date();			
+					var now = new Date();				
 	
-					var buyDate = oView.byId('buyDate').getSelectedDates()[0].getStartDate();
-					buyDate.setHours(buyDate.getHours() + 5); // timezone bugfix
+					var sellDate = oView.byId('sellDate').getSelectedDates()[0].getStartDate();
+					sellDate.setHours(sellDate.getHours() + 5); // timezone bugfix
 	
 					var newEvent = {
-						"$class": "org.bitapel.model.BuyEvent",
+						"$class": "org.bitapel.model.SaleEvent",
 						"id": newId,                
 						"thing": "resource:org.bitapel.model.Thing#id:" + this.thingId,
 						"owner": "resource:org.bitapel.model.User#id:" + bId,
 						"recordedBy": oView.byId('recordedBy').getValue(),
 						"totalWorkingUnits": oView.byId('totalWorkingUnits').getValue(),
 						"totalWorkingUnitType": oView.byId('totalWorkingUnitType').getSelectedItem().getText(),
-						"buyDate": buyDate.toISOString(),
-						"buyFrom": oView.byId('buyFrom').getValue(),
-						"buyPrice": oView.byId('buyPrice').getValue(),
-						"buyPriceCurrency": oView.byId('buyPriceCurrency').getValue(),
-						"buyDetails": oView.byId('buyDetails').getValue()
+						"saleDate": sellDate.toISOString(),
+						"saleDetails": oView.byId('sellDetails').getValue()
 					}
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 
 	
 					var that = this;
 
-					EventService.createBuyEvent(this.thingId, uId, bId, newEvent).then(function(res){
+					EventService.createSellEvent(this.thingId, uId, bId, newEvent).then(function(res){
 						console.log(res);
 	
 						oBusyDialog.close();
 
-						MessageToast.show("Buy Event Saved !");
+						MessageToast.show("Sale Event Saved !");
 
 						that.getRouter().navTo("thingHistory", { id : that.thingId});
 					});

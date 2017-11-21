@@ -135,6 +135,14 @@ app.post('/api/event/buy/create/:tId/:uId', function (req, res) {
     bitapelService.createBuyEvent(req, res, uId, bId, newEvent);
 });
 
+app.post('/api/event/sale/create/:tId/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    var newEvent = req.body;
+    bitapelService.createSaleEvent(req, res, uId, bId, newEvent);
+});
+
 app.post('/api/event/info/create/:tId/:uId', function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    

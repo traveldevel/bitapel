@@ -366,6 +366,28 @@ module.exports.createBuyEvent = exports.createBuyEvent = function(newEvent, res)
     });
 }
 
+module.exports.createSaleEvent = exports.createSaleEvent = function(newEvent, res){
+    
+    //console.log(newEvent);
+
+    request({
+        url: FABRIC_COMPOSER_REST_URL + "/api/SaleEvent",
+        method: "POST",
+        json: true,
+        body: newEvent
+    }, function (error, response, body){
+        
+        //console.log(error, body);
+
+        if (!error && response.statusCode == 200) {
+            res.json(newEvent);
+        }
+        else{
+            console.log("createSaleEvent error : ", body);
+        }                
+    });
+}
+
 module.exports.createInfoEvent = exports.createInfoEvent = function(newEvent, res){
     
     //console.log(newEvent);

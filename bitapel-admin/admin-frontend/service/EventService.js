@@ -131,7 +131,7 @@ sap.ui.define([
 
                     $.ajax({
                         type: "POST",
-                        url: "/api/event/sell/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        url: "/api/event/sale/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify(newEvent),
