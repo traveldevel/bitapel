@@ -53,6 +53,31 @@ sap.ui.define([
 					
 					oView.setBusy(false);
 				});
-			}
+			},
+
+			onCreateBuyPress: function(oEvent){
+				this.getRouter().navTo("createBuyEvent", { id: this.thingId });
+			},
+
+			onCreateInfoPress: function(oEvent){
+				this.getRouter().navTo("createInfoEvent", { id: this.thingId });
+			},
+
+			onCreateMaintenancePress: function(oEvent){
+				this.getRouter().navTo("createMaintenanceEvent", { id: this.thingId });	
+			},
+			
+			onCreateDamagePress: function(oEvent){
+				this.getRouter().navTo("createDamageEvent", { id: this.thingId });	
+			},
+			
+			onCreateRepairPress: function(oEvent){
+				this.getRouter().navTo("createRepairEvent", { id: this.thingId });	
+			},			
+
+			onCreateSellPress: function(oEvent){
+				this.getRouter().navTo("createSellEvent", { id: this.thingId });	
+			}		
+
 		});
 });

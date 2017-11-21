@@ -12,6 +12,12 @@
 		<Toolbar id="headerToolbar">
 			<Title id="historyTitle" text="{i18n>historyForThingTitle}" level="H4" titleStyle="H4"/>
 			<ToolbarSpacer />
+			<Button id="createBuyButton" press="onCreateBuyPress" icon="sap-icon://credit-card" tooltip="{i18n>createBuyButtonText}"/>
+			<Button id="createInfoButton" press="onCreateInfoPress" icon="sap-icon://message-information" tooltip="{i18n>createInfoButtonText}"/>
+			<Button id="createMaintenanceButton" press="onCreateMaintenancePress" icon="sap-icon://wallet" tooltip="{i18n>createMaintenanceButtonText}"/>
+			<Button id="createDamageButton" press="onCreateDamagePress" icon="sap-icon://collision" tooltip="{i18n>createDamageButtonText}"/>
+			<Button id="createRepairButton" press="onCreateRepairPress" icon="sap-icon://vehicle-repair" tooltip="{i18n>createRepairButtonText}"/>
+			<Button id="createSellButton" press="onCreateSellPress" icon="sap-icon://travel-expense-report" tooltip="{i18n>createSellButtonText}"/>
 		</Toolbar>
 
 		<IconTabBar
