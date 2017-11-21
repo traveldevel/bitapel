@@ -321,6 +321,38 @@ module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, r
     });
 }
 
+module.exports.getThingInfo = exports.getThingInfo = function(req, res, uId, tId, uId, bId){
+    
+    fabricService.getThingInfoLog(tId, bId).then(function(infoRecords){
+
+        //console.log(infoRecords);
+
+        var allRecords = [];
+
+        var n = infoRecords.length;
+        for(var i = 0; i < n; i++){
+            
+            var record = infoRecords[i];
+
+            record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
+            record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
+            record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
+            record.infoDate = aesEnc.decrypt(record.infoDate, uId);
+            record.infoDetails = aesEnc.decrypt(record.infoDetails, uId); 
+
+            allRecords.push(record);
+        }
+
+        var recordsResponse = {
+            count : allRecords.length,
+            rows : allRecords
+        }
+
+        res.json(recordsResponse);
+    });
+}
+
+
 module.exports.createBuyEvent = exports.createBuyEvent = function(req, res, uId, bId, newEvent){
     
     var newEventEnc = newEvent;
@@ -354,18 +386,15 @@ module.exports.createSaleEvent = exports.createSaleEvent = function(req, res, uI
     fabricService.createSaleEvent(newEventEnc, res);    
 }
 
-module.exports.createInfoEvent = exports.createInfoEvent = function(req, res, tId, uId, bId, newEvent){
+module.exports.createInfoEvent = exports.createInfoEvent = function(req, res, uId, bId, newEvent){
     
     var newEventEnc = newEvent;
     
-    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, tId);
-    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, tId);
-    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, tId);
-    newEventEnc.buyDate = aesEnc.encrypt(newEvent.buyDate, tId);
-    newEventEnc.buyFrom = aesEnc.encrypt(newEvent.buyFrom, tId);
-    newEventEnc.buyPrice = aesEnc.encrypt(newEvent.buyPrice, tId);
-    newEventEnc.buyPriceCurrency = aesEnc.encrypt(newEvent.buyPriceCurrency, tId);
-    newEventEnc.buyDetails = aesEnc.encrypt(newEvent.buyDetails, tId); 
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, uId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, uId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, uId);
+    newEventEnc.infoDetails = aesEnc.encrypt(newEvent.infoDetails, uId); 
+    newEventEnc.infoDate = aesEnc.encrypt(newEvent.infoDate, uId); 
 
     //console.log(newEventEnc);
 

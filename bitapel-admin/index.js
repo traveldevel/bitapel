@@ -159,6 +159,13 @@ app.get('/api/events/buyandsale/:tId/:uId', function (req, res) {
     bitapelService.getThingBuyAndSell(req, res, uId, tId, uId, bId);
 });
 
+app.get('/api/events/info/:tId/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    bitapelService.getThingInfo(req, res, uId, tId, uId, bId);
+});
+
 // app start
 app.listen(port, function () {
     console.log('BitApel listening on ', port);

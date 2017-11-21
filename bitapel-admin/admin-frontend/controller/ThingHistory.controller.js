@@ -53,6 +53,15 @@ sap.ui.define([
 					
 					oView.setBusy(false);
 				});
+
+				ThingService.getThingInfo(this.thingId, uId, bId).then(function(records){
+					console.log(records);
+
+					var oModel = that.getModel("selectedThingHistory");
+					oModel.setProperty("/GeneralInfo", records);
+					
+					oView.setBusy(false);
+				});				
 			},
 
 			onCreateBuyPress: function(oEvent){
