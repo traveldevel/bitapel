@@ -141,12 +141,37 @@
 					"pattern": "thingCards",
 					"name": "thingCards",
 					"target": "thingCards"
-				},	
+				},
 				{
-					"pattern": "createEvent",
-					"name": "createEvent",
-					"target": "createEvent"
-				}												
+					"pattern": "createBuyEvent/{id}",
+					"name": "createBuyEvent",
+					"target": "createBuyEvent"
+				},
+				{
+					"pattern": "createInfoEvent/{id}",
+					"name": "createInfoEvent",
+					"target": "createInfoEvent"
+				},
+				{
+					"pattern": "createDamageEvent/{id}",
+					"name": "createDamageEvent",
+					"target": "createDamageEvent"
+				},
+				{
+					"pattern": "createRepairEvent/{id}",
+					"name": "createRepairEvent",
+					"target": "createRepairEvent"
+				},
+				{
+					"pattern": "createMaintenanceEvent/{id}",
+					"name": "createMaintenanceEvent",
+					"target": "createMaintenanceEvent"
+				},
+				{
+					"pattern": "createSellEvent/{id}",
+					"name": "createSellEvent",
+					"target": "createSellEvent"
+				}																	
 			],
 			"targets": {
 				"home": {
@@ -176,9 +201,24 @@
 				"thingHistory": {
 					"viewName": "ThingHistory"
 				},	
-				"createEvent": {
-					"viewName": "CreateEvent"
-				},	
+				"createBuyEvent": {
+					"viewName": "CreateBuyEvent"
+				},
+				"createInfoEvent": {
+					"viewName": "CreateInfoEvent"
+				},
+				"createDamageEvent": {
+					"viewName": "CreateDamageEvent"
+				},
+				"createRepairEvent": {
+					"viewName": "CreateRepairEvent"
+				},
+				"createMaintenanceEvent": {
+					"viewName": "CreateMaintenanceEvent"
+				},				
+				"createSellEvent": {
+					"viewName": "CreateSellEvent"
+				},																
 				"thingCards": {
 					"viewName": "ThingCards"
 				}																	
