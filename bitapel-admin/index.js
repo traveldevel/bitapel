@@ -126,27 +126,29 @@ app.get('/api/things/:uId', function (req, res) {
     bitapelService.getAllThings(req, res, uId, bId);
 });
 
-// Transaction api functions
-app.get('/api/thing/buyandsale/:tId/:uId', function (req, res) {
+// Transaction create api functions
+app.post('/api/event/buy/create/:tId/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    var newEvent = req.body;
+    bitapelService.createBuyEvent(req, res, uId, bId, newEvent);
+});
+
+app.post('/api/event/info/create/:tId/:uId', function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    var newEvent = req.body;
+    bitapelService.createInfoEvent(req, res, uId, bId, newEvent);
+});
+
+// Transaction get
+app.get('/api/events/buyandsale/:tId/:uId', function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    
     var uId = req.params.uId;
     bitapelService.getThingBuyAndSell(req, res, uId, tId, uId, bId);
-});
-
-app.post('/api/transaction/create', function (req, res) {
-    var tran = {};
-    res.json(tran);
-});
-
-app.get('/api/transaction/:id', function (req, res) {
-    var tran = {};
-    res.json(tran);
-});
-
-app.get('/api/thing/transactions/:thingId', function (req, res) {
-    var list = [];
-    res.json(list);
 });
 
 // app start

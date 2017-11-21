@@ -24,11 +24,11 @@ transaction BuyEvent {
   --> Thing thing
   --> User owner
   o String recordedBy
-  o Integer totalWorkingUnits
+  o String totalWorkingUnits
   o String totalWorkingUnitType  
-  o DateTime buyDate
+  o String buyDate
   o String buyFrom
-  o Integer buyPrice
+  o String buyPrice
   o String buyPriceCurrency
   o String buyDetails
 }
@@ -37,9 +37,9 @@ transaction InfoEvent {
   --> Thing thing
   --> User owner
   o String recordedBy
-  o Integer totalWorkingUnits
+  o String totalWorkingUnits
   o String totalWorkingUnitType  
-  o DateTime infoDate
+  o String infoDate
   o String infoDetails
 }
 
@@ -47,11 +47,11 @@ transaction MaintenanceEvent {
   --> Thing thing
   --> User owner
   o String recordedBy
-  o Integer totalWorkingUnits
+  o String totalWorkingUnits
   o String totalWorkingUnitType
-  o DateTime maintenanceDate
-  o Integer maintenanceEntity
-  o Integer maintenancePrice
+  o String maintenanceDate
+  o String maintenanceEntity
+  o String maintenancePrice
   o String maintenancePriceCurrency    
   o String maintenanceDetails
 }
@@ -60,9 +60,9 @@ transaction DamageEvent {
   --> Thing thing
   --> User owner
   o String recordedBy
-  o Integer totalWorkingUnits
+  o String totalWorkingUnits
   o String totalWorkingUnitType
-  o DateTime damageDate
+  o String damageDate
   o String damageDetails
 }
 
@@ -70,11 +70,11 @@ transaction RepairEvent {
   --> Thing thing
   --> User owner
   o String recordedBy
-  o Integer totalWorkingUnits
+  o String totalWorkingUnits
   o String totalWorkingUnitType
-  o DateTime repairDate
-  o Integer repairEntity
-  o Integer repairPrice
+  o String repairDate
+  o String repairEntity
+  o String repairPrice
   o String repairPriceCurrency        
   o String repairDetails
 }
@@ -83,8 +83,8 @@ transaction SaleEvent {
   --> Thing thing
   --> User owner
   o String recordedBy
-  o Integer totalWorkingUnits
+  o String totalWorkingUnits
   o String totalWorkingUnitType
-	o DateTime saleDate
+	o String saleDate
 	o String saleDetails
 }

@@ -5,7 +5,7 @@
 		id="thingBuyAndSaleHistoryTable"
 		inset="false"
 		items="{
-			path: 'selectedThingHistory>/BuyAndSale',
+			path: 'selectedThingHistory>/BuyAndSale/rows',
 			sorter: {
 				path: 'timestamp'
 			}

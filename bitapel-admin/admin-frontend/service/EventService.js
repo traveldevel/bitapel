@@ -4,17 +4,17 @@ sap.ui.define([
 
     return {
 
-        createThing : function (uId, newThing) {
+        createBuyEvent: function (tId, uId, bId, newEvent) {
 
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "POST",
-                        url: "/api/thing/create/" + uId,
+                        url: "/api/event/buy/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
-                        data: JSON.stringify(newThing),
+                        data: JSON.stringify(newEvent),
                         success: function(res){
                             resolve(res);
                         },
@@ -28,17 +28,65 @@ sap.ui.define([
             return promise;
         },
 
-        saveThing : function (uId, editedThing) {
+        createInfoEvent: function (tId, uId, bId, newEvent) {
 
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
-                        type: "PUT",
-                        url: "/api/thing/update/" + uId,
+                        type: "POST",
+                        url: "/api/event/info/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
-                        data: JSON.stringify(editedThing),
+                        data: JSON.stringify(newEvent),
+                        success: function(res){
+                            resolve(res);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            reject(errorThrown);
+                        }
+                    });
+                }
+            );
+
+            return promise;
+        },
+        
+        createMaintenanceEvent: function (tId, uId, bId, newEvent) {
+            
+            var promise = new Promise(
+                function(resolve, reject){
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/event/maintenance/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        dataType   : 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        data: JSON.stringify(newEvent),
+                        success: function(res){
+                            resolve(res);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            reject(errorThrown);
+                        }
+                    });
+                }
+            );
+
+            return promise;
+        },           
+
+        createDamageEvent: function (tId, uId, bId, newEvent) {
+            
+            var promise = new Promise(
+                function(resolve, reject){
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/event/damage/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        dataType   : 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        data: JSON.stringify(newEvent),
                         success: function(res){
                             resolve(res);
                         },
@@ -52,53 +100,18 @@ sap.ui.define([
             return promise;
         },        
 
-        getThingById : function(thingId, bId, uId) {
+        createRepairEvent: function (tId, uId, bId, newEvent) {
             
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
-                        type: "GET",
-                        url: "/api/thing/" + uId + "/" + thingId + "?bId=" + encodeURIComponent(bId),
+                        type: "POST",
+                        url: "/api/event/repair/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
-                        success: function(res){                   
-                            resolve(res);
-                        },
-                        error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            reject(errorThrown);
-                        }
-                    });
-                }
-            );
-
-            return promise;
-        },
-
-        getThings : function(bId, uId) {
-    
-            var promise = new Promise(
-                function(resolve, reject){
-
-                    $.ajax({
-                        type: "GET",
-                        url: "/api/things/" + uId + "?bId=" + encodeURIComponent(bId),
-                        contentType: 'application/json; charset=UTF-8',
+                        data: JSON.stringify(newEvent),
                         success: function(res){
-                            var n = res.length;
- 
-                            res.sort(function compare(a, b) {
-
-                                if (parseInt(a.creationTimestamp) < parseInt(b.creationTimestamp)){
-                                    return 1;  
-                                }
-                                  
-                                if (parseInt(a.creationTimestamp) > parseInt(b.creationTimestamp)){
-                                    return -1;  
-                                }
-
-                                return 0;
-                            });
-                                                        
                             resolve(res);
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -111,16 +124,18 @@ sap.ui.define([
             return promise;
         },
 
-        getThingBuyAndSale : function(tId, uId, bId) {
+        createSellEvent: function (tId, uId, bId, newEvent) {
             
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
-                        type: "GET",
-                        url: "/api/events/buyandsale/" + tId+ "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        type: "POST",
+                        url: "/api/event/sell/create/" + tId + "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
-                        success: function(res){                   
+                        data: JSON.stringify(newEvent),
+                        success: function(res){
                             resolve(res);
                         },
                         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -131,7 +146,7 @@ sap.ui.define([
             );
 
             return promise;
-        }
-         
+        } 
+
     };
 });

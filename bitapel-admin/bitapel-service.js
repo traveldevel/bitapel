@@ -240,6 +240,15 @@ module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, r
                 
                 var record = buyRecords[i];
 
+                record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
+                record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
+                record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
+                record.buyDate = aesEnc.decrypt(record.buyDate, uId);
+                record.buyFrom = aesEnc.decrypt(record.buyFrom, uId);
+                record.buyPrice = aesEnc.decrypt(record.buyPrice, uId);
+                record.buyPriceCurrency = aesEnc.decrypt(record.buyPriceCurrency, uId);
+                record.buyDetails = aesEnc.decrypt(record.buyDetails, uId); 
+
                 record.date = record.buyDate;
                 delete record.buyDate;
 
@@ -294,7 +303,48 @@ module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, r
                 allRecords.push(record);
             }
 
-            res.json(allRecords);
+            var recordsResponse = {
+                count : allRecords.length,
+                rows : allRecords
+            }
+
+            res.json(recordsResponse);
         });
     });
+}
+
+module.exports.createBuyEvent = exports.createBuyEvent = function(req, res, uId, bId, newEvent){
+    
+    var newEventEnc = newEvent;
+    
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, uId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, uId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, uId);
+    newEventEnc.buyDate = aesEnc.encrypt(newEvent.buyDate, uId);
+    newEventEnc.buyFrom = aesEnc.encrypt(newEvent.buyFrom, uId);
+    newEventEnc.buyPrice = aesEnc.encrypt(newEvent.buyPrice, uId);
+    newEventEnc.buyPriceCurrency = aesEnc.encrypt(newEvent.buyPriceCurrency, uId);
+    newEventEnc.buyDetails = aesEnc.encrypt(newEvent.buyDetails, uId); 
+
+    //console.log(newEventEnc);
+
+    fabricService.createBuyEvent(newEventEnc, res);    
+}
+
+module.exports.createInfoEvent = exports.createInfoEvent = function(req, res, tId, uId, bId, newEvent){
+    
+    var newEventEnc = newEvent;
+    
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, tId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, tId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, tId);
+    newEventEnc.buyDate = aesEnc.encrypt(newEvent.buyDate, tId);
+    newEventEnc.buyFrom = aesEnc.encrypt(newEvent.buyFrom, tId);
+    newEventEnc.buyPrice = aesEnc.encrypt(newEvent.buyPrice, tId);
+    newEventEnc.buyPriceCurrency = aesEnc.encrypt(newEvent.buyPriceCurrency, tId);
+    newEventEnc.buyDetails = aesEnc.encrypt(newEvent.buyDetails, tId); 
+
+    //console.log(newEventEnc);
+
+    fabricService.createInfoEvent(newEventEnc, res);    
 }

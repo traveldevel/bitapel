@@ -27,7 +27,7 @@
 			expanded="{device>/isNoPhone}"
 			class="sapUiResponsiveContentPadding">
 			<items>
-				<IconTabFilter text="{i18n>historyBuySaleText}" count="4321">
+				<IconTabFilter text="{i18n>historyBuySaleText}" count="{selectedThingHistory>/BuyAndSale/count}">
 					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BuyAndSaleList"/>
 				</IconTabFilter>			
 				<IconTabFilter text="{i18n>historyInfoText}" count="3">

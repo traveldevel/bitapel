@@ -260,7 +260,7 @@ module.exports.getThing = exports.getThing = function(tId, bId){
     return getThingPromise;
 }
 
-//transactions
+// get event transactions
 module.exports.getThingBuyLog = exports.getThingBuyLog = function(tId, bId){
     var getThingLogPromise = new Promise(
         
@@ -341,4 +341,49 @@ module.exports.getThingSaleLog = exports.getThingSaleLog = function(tId, bId){
     );
 
     return getThingLogPromise;
+}
+
+// create event transactions
+module.exports.createBuyEvent = exports.createBuyEvent = function(newEvent, res){
+    
+    //console.log(newEvent);
+
+    request({
+        url: FABRIC_COMPOSER_REST_URL + "/api/BuyEvent",
+        method: "POST",
+        json: true,
+        body: newEvent
+    }, function (error, response, body){
+        
+        //console.log(error, body);
+
+        if (!error && response.statusCode == 200) {
+            res.json(newEvent);
+        }
+        else{
+            console.log("createBuyEvent error : ", body);
+        }                
+    });
+}
+
+module.exports.createInfoEvent = exports.createInfoEvent = function(newEvent, res){
+    
+    //console.log(newEvent);
+
+    request({
+        url: FABRIC_COMPOSER_REST_URL + "/api/InfoEvent",
+        method: "POST",
+        json: true,
+        body: newEvent
+    }, function (error, response, body){
+        
+        //console.log(error, body);
+
+        if (!error && response.statusCode == 200) {
+            res.json(newEvent);
+        }
+        else{
+            console.log("createInfoEvent error : ", body);
+        }                
+    });
 }
