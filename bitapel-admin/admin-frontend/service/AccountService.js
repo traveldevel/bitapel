@@ -48,7 +48,30 @@ sap.ui.define([
             );
 
             return promise;
-        }
+        },
+
+        deleteAccount : function (uId, bId) {
+            
+            var promise = new Promise(
+                function(resolve, reject){
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/api/user/delete/" + uId + "?bId=" + encodeURIComponent(bId),
+                        dataType   : 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        success: function(res){
+                            resolve(res);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            reject(errorThrown);
+                        }
+                    });
+                }
+            );
+
+            return promise;
+        }    
 
     };
 });

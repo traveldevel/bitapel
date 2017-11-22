@@ -101,6 +101,11 @@ app.put('/api/user/update/:uId', auth, function (req, res) {
     mongoService.updateUser(req, res, uId, saveUser);
 });
 
+app.delete('/api/user/delete/:uId', auth, function (req, res) {
+    var uId = req.params.uId;
+    mongoService.deleteUser(req, res, uId);
+});
+
 // Thing api function
 app.post('/api/thing/create/:uId', auth, function (req, res) {
     var uId = req.params.uId;

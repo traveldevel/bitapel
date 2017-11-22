@@ -65,6 +65,12 @@
 											text="{i18n>saveAccountButtonText}" 
 											press="onSaveAccountPress" 
 											icon="sap-icon://save"/>
+										<Button 
+											id="deleteButton" 
+											type="Reject"
+											text="{i18n>deleteAccountButtonText}" 
+											press="onDeleteAccountPress" 
+											icon="sap-icon://delete"/>											
 									</f:fields>
 								</f:FormElement>
 							</f:formElements>

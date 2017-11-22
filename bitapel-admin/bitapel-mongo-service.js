@@ -54,3 +54,29 @@ module.exports.updateUser = exports.updateUser = function(req, res, uId, changed
         }
     });
 }
+
+module.exports.deleteUser = exports.deleteUser = function(req, res, uId){
+
+    mongooseModels.BitApelUser.findById(uId, function (err, user) {
+        if (err) {
+            console.log('get mongo user error : ', err);
+        }
+
+        console.log(user);
+
+        if(user !== undefined && user.id === uId){
+        
+            user.markedForDeletion = true;
+            
+            user.save(function(err, user2){
+                if(!err){
+                    console.log("error mark for delete user in mongo : ", err);
+                }
+
+                console.log(user2);
+            })
+
+            res.json(user);
+        }
+    });
+}

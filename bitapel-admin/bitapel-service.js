@@ -63,7 +63,7 @@ module.exports.loginUser = exports.loginUser = function(req, res){
 
                 console.log("decrypted email : ", d_email, savedId);
 
-                if(d_email === email){
+                if(d_email === email && users[i].markedForDeletion === false){
 
                     users[i].email = aesEnc.decrypt(users[i].email, savedId); 
                     users[i].firstName = aesEnc.decrypt(users[i].firstName, savedId); 

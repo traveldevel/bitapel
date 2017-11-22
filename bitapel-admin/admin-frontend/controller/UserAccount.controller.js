@@ -89,6 +89,46 @@ sap.ui.define([
 				return true;
 			},
 
+			onDeleteAccountPress: function(oEvent){
+
+				var that = this;
+
+				var dialog = new sap.m.Dialog({
+					title: 'Confirm Account Deletion',
+					type: 'Message',
+					content: new sap.m.Text({ text: 'Are you sure you want to Permanently delete your account data ?' }),
+					beginButton: new sap.m.Button({
+						text: 'DELETE',
+						type: sap.ui.commons.ButtonStyle.Reject,
+						press: function () {
+							
+							dialog.close();
+
+							var uId = sessionStorage.getItem("uId");
+							var bId = sessionStorage.getItem("bId");
+							AccountService.deleteAccount(uId, bId);
+							
+							sessionStorage.clear();
+
+							that.getModel("side").loadData('model/sideContent.json');
+
+							that.getRouter().navTo("home");
+						}
+					}),
+					endButton: new sap.m.Button({
+						text: 'Cancel',
+						press: function () {
+							dialog.close();
+						}
+					}),
+					afterClose: function() {
+						dialog.destroy();
+					}
+				});
+	
+				dialog.open();
+			},
+
 			onSaveAccountPress: function(oEvent){
 
 				var oView = this.getView();
