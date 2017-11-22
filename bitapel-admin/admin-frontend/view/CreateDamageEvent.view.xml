@@ -1,0 +1,82 @@
+<mvc:View
+	controllerName="history.for.every.thing.ui.controller.CreateDamageEvent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	<Page showHeader="false" busyIndicatorDelay="1">
+		
+			<VBox class="sapUiSmallMargin">
+				
+				<f:Form 
+					id="FormToolbar"
+					editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout />
+					</f:layout>
+					<f:toolbar>
+						<Toolbar id="headerToolbar">
+							<Title id="formTitle" text="{i18n>thingCreateDamageEventTitle}" level="H4" titleStyle="H4"/>
+							<ToolbarSpacer />
+						</Toolbar>
+					</f:toolbar>					
+					<f:formContainers>
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
+								<f:FormElement label="{i18n>recordedByText}">
+									<f:fields>
+										<Input id="recordedBy" type="Text"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18n>totalWorkingUnitsText}">
+									<f:fields>
+										<Input id="totalWorkingUnits" type="Text"/>
+										<Select
+											id="totalWorkingUnitType"
+											forceSelection="true">
+											<core:Item key="" text="Select..."/>
+											<core:Item key="km" text="Kilometers"/>
+											<core:Item key="hrs" text="Hours"/>
+											<core:Item key="days" text="Days"/>
+										</Select>										
+									</f:fields>
+								</f:FormElement>															
+								<f:FormElement label="{i18n>DamageDetailsText}">
+									<f:fields>
+										<Input id="damageDetails" type="Text"/>
+									</f:fields>
+								</f:FormElement>										
+								<f:FormElement label="{i18n>thingDamageDateText}">
+									<f:fields>
+										<u:Calendar id="damageDate"/>
+									</f:fields>
+								</f:FormElement>																																					
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements></f:formElements>
+						</f:FormContainer>	
+						<f:FormContainer ariaLabelledBy="">
+							<f:formElements>
+								<f:FormElement label="">
+									<f:fields>
+										<Button 
+											id="saveButton" 
+											type="Emphasized"
+											text="{i18n>createDamageButtonText}" 
+											press="onCreateEventPress" 
+											icon="sap-icon://add-product"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>												
+					</f:formContainers>
+				</f:Form>
+		
+		</VBox>
+
+		<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.BusyDialog"/>
+	</Page>
+</mvc:View>

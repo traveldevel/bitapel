@@ -61,6 +61,15 @@ sap.ui.define([
 					oModel.setProperty("/GeneralInfo", records);
 					
 					oView.setBusy(false);
+				});	
+				
+				ThingService.getThingDamage(this.thingId, uId, bId).then(function(records){
+					console.log(records);
+
+					var oModel = that.getModel("selectedThingHistory");
+					oModel.setProperty("/Damages", records);
+					
+					oView.setBusy(false);
 				});				
 			},
 

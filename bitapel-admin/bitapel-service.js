@@ -223,7 +223,7 @@ module.exports.getThing = exports.getThing = function(req, res, uId, bId, tId){
     });
 }
 
-// history functions
+// get history functions
 module.exports.getThingBuyAndSell = exports.getThingBuyAndSell = function(req, res, uId, tId, uId, bId){
     
     fabricService.getThingBuyLog(tId, bId).then(function(buyRecords){
@@ -352,7 +352,38 @@ module.exports.getThingInfo = exports.getThingInfo = function(req, res, uId, tId
     });
 }
 
+module.exports.getThingDamage = exports.getThingDamage = function(req, res, uId, tId, uId, bId){
+    
+    fabricService.getThingDamageLog(tId, bId).then(function(damageRecords){
 
+        //console.log(damageRecords);
+
+        var allRecords = [];
+
+        var n = damageRecords.length;
+        for(var i = 0; i < n; i++){
+            
+            var record = damageRecords[i];
+
+            record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
+            record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
+            record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
+            record.damageDate = aesEnc.decrypt(record.damageDate, uId);
+            record.damageDetails = aesEnc.decrypt(record.damageDetails, uId); 
+
+            allRecords.push(record);
+        }
+
+        var recordsResponse = {
+            count : allRecords.length,
+            rows : allRecords
+        }
+
+        res.json(recordsResponse);
+    });
+}
+
+// create functions for history
 module.exports.createBuyEvent = exports.createBuyEvent = function(req, res, uId, bId, newEvent){
     
     var newEventEnc = newEvent;
@@ -399,4 +430,19 @@ module.exports.createInfoEvent = exports.createInfoEvent = function(req, res, uI
     //console.log(newEventEnc);
 
     fabricService.createInfoEvent(newEventEnc, res);    
+}
+
+module.exports.createDamageEvent = exports.createDamageEvent = function(req, res, uId, bId, newEvent){
+    
+    var newEventEnc = newEvent;
+    
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, uId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, uId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, uId);
+    newEventEnc.damageDetails = aesEnc.encrypt(newEvent.damageDetails, uId); 
+    newEventEnc.damageDate = aesEnc.encrypt(newEvent.damageDate, uId); 
+
+    //console.log(newEventEnc);
+
+    fabricService.createDamageEvent(newEventEnc, res);    
 }
