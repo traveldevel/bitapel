@@ -43,7 +43,7 @@ sap.ui.define([
 				oView.byId('totalWorkingUnitType').setSelectedKey('');
 				oView.byId('sellDetails').setValue('');
 
-				var oCalendar = oView.byId('SellDate');
+				var oCalendar = oView.byId('sellDate');
 				oCalendar.removeAllSelectedDates();
 				oCalendar.addSelectedDate(new DateRange({startDate: new Date()}));
 			},

@@ -9,6 +9,7 @@ const port = process.env.port || 8081;
 var fabricService = require('./bitapel-fabric-service');
 var mongoService = require('./bitapel-mongo-service');
 var bitapelService = require('./bitapel-service');
+var auth = require('./bitapel-auth').auth;
 
 var bodyParser = require('body-parser');
 var express = require('express');
@@ -38,13 +39,13 @@ app.get('/api/user/which/:uId', function (req, res) {
     bitapelService.whichUser(req, res, uId);
 });
 
-app.get('/api/user/menu/:uId', function (req, res) {
+app.get('/api/user/menu/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var uId = req.params.uId;
     bitapelService.getThingsForUserMenu(req, res, bId, uId);
 });
 
-app.get('/api/user/alerts/:uId', function (req, res) {
+app.get('/api/user/alerts/:uId', auth, function (req, res) {
     var id = req.params.id;
 
     var alerts = {
@@ -88,46 +89,46 @@ app.get('/api/user/alerts/:uId', function (req, res) {
     res.json(alerts);
 });
 
-app.get('/api/user/:uId', function (req, res) {
+app.get('/api/user/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var uId = req.params.uId;
     mongoService.getUserById(req, res, uId);
 });
 
-app.put('/api/user/update/:uId', function (req, res) {
+app.put('/api/user/update/:uId', auth, function (req, res) {
     var uId = req.params.uId;
     var saveUser = req.body;
     mongoService.updateUser(req, res, uId, saveUser);
 });
 
 // Thing api function
-app.post('/api/thing/create/:uId', function (req, res) {
+app.post('/api/thing/create/:uId', auth, function (req, res) {
     var uId = req.params.uId;
     var newThing = req.body;
     bitapelService.createThing(req, res, uId, newThing);
 });
 
-app.put('/api/thing/update/:uId', function (req, res) {
+app.put('/api/thing/update/:uId', auth, function (req, res) {
     var uId = req.params.uId;
     var saveThing = req.body;
     bitapelService.saveThing(req, res, uId, saveThing);
 });
 
-app.get('/api/thing/:uId/:tId', function (req, res) {
+app.get('/api/thing/:uId/:tId', auth, function (req, res) {
     var bId = req.query.bId;
     var uId = req.params.uId;
     var tId = req.params.tId;
     bitapelService.getThing(req, res, uId, bId, tId);
 });
 
-app.get('/api/things/:uId', function (req, res) {
+app.get('/api/things/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var uId = req.params.uId;
     bitapelService.getAllThings(req, res, uId, bId);
 });
 
 // Transaction create api functions
-app.post('/api/event/buy/create/:tId/:uId', function (req, res) {
+app.post('/api/event/buy/create/:tId/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    
     var uId = req.params.uId;
@@ -135,7 +136,7 @@ app.post('/api/event/buy/create/:tId/:uId', function (req, res) {
     bitapelService.createBuyEvent(req, res, uId, bId, newEvent);
 });
 
-app.post('/api/event/sale/create/:tId/:uId', function (req, res) {
+app.post('/api/event/sale/create/:tId/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    
     var uId = req.params.uId;
@@ -143,7 +144,7 @@ app.post('/api/event/sale/create/:tId/:uId', function (req, res) {
     bitapelService.createSaleEvent(req, res, uId, bId, newEvent);
 });
 
-app.post('/api/event/info/create/:tId/:uId', function (req, res) {
+app.post('/api/event/info/create/:tId/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    
     var uId = req.params.uId;
@@ -152,14 +153,14 @@ app.post('/api/event/info/create/:tId/:uId', function (req, res) {
 });
 
 // Transaction get
-app.get('/api/events/buyandsale/:tId/:uId', function (req, res) {
+app.get('/api/events/buyandsale/:tId/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    
     var uId = req.params.uId;
     bitapelService.getThingBuyAndSell(req, res, uId, tId, uId, bId);
 });
 
-app.get('/api/events/info/:tId/:uId', function (req, res) {
+app.get('/api/events/info/:tId/:uId', auth, function (req, res) {
     var bId = req.query.bId;
     var tId = req.params.tId;    
     var uId = req.params.uId;

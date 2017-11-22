@@ -117,7 +117,7 @@ sap.ui.define([
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 
 
-					AccountService.saveAccount(uId, editedAccount).then(function(res){
+					AccountService.saveAccount(uId, bId, editedAccount).then(function(res){
 						console.log(res);
 	
 						oBusyDialog.close();

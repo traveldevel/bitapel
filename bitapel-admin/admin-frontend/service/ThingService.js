@@ -4,14 +4,14 @@ sap.ui.define([
 
     return {
 
-        createThing : function (uId, newThing) {
+        createThing : function (uId, bId, newThing) {
 
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "POST",
-                        url: "/api/thing/create/" + uId,
+                        url: "/api/thing/create/" + uId + "?bId=" + encodeURIComponent(bId),
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify(newThing),
@@ -28,14 +28,14 @@ sap.ui.define([
             return promise;
         },
 
-        saveThing : function (uId, editedThing) {
+        saveThing : function (uId, bId, editedThing) {
 
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "PUT",
-                        url: "/api/thing/update/" + uId,
+                        url: "/api/thing/update/" + uId + "?bId=" + encodeURIComponent(bId),
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify(editedThing),

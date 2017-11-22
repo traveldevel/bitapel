@@ -170,7 +170,7 @@ sap.ui.define([
 	
 					var oBusyDialog = this.getView().byId("busyDialog").open(); 
 	
-					ThingService.saveThing(uId, editedThing).then(function(res){
+					ThingService.saveThing(uId, bId, editedThing).then(function(res){
 						console.log(res);
 	
 						oBusyDialog.close();

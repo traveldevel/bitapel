@@ -71,10 +71,7 @@ sap.ui.define([
 
 							var userModel = that.getModel("loggedUser");
 							userModel.setData(data);
-							that.setModel(userModel, "loggedUser");
-
-							var alertsModel = that.getModel("alerts");
-							alertsModel.loadData("/api/user/alerts/" + data._id);						
+							that.setModel(userModel, "loggedUser");					
 
 							oView.setBusy(false);
 							that.getRouter().navTo('home');		
@@ -86,6 +83,9 @@ sap.ui.define([
 
 									var sideMenuModel = that.getModel("side");
 									sideMenuModel.loadData("/api/user/menu/" + sessionStorage.uId + "?bId=" + encodeURIComponent(sessionStorage.bId));								
+
+									var alertsModel = that.getModel("alerts");
+									alertsModel.loadData("/api/user/alerts/" + sessionStorage.uId + "?bId=" + encodeURIComponent(sessionStorage.bId));										
 								}
 								else{
 									sessionStorage.clear();

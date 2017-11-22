@@ -4,14 +4,14 @@ sap.ui.define([
 
     return {
 
-        saveAccount : function (uId, editedAccount) {
+        saveAccount : function (uId, bId, editedAccount) {
 
             var promise = new Promise(
                 function(resolve, reject){
 
                     $.ajax({
                         type: "PUT",
-                        url: "/api/user/update/" + uId,
+                        url: "/api/user/update/" + uId + "?bId=" + encodeURIComponent(bId),
                         dataType   : 'json',
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify(editedAccount),
