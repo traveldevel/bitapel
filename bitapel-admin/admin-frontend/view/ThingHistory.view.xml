@@ -33,8 +33,8 @@
 				<IconTabFilter text="{i18n>historyInfoText}" count="{selectedThingHistory>/GeneralInfo/count}">
 					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.GeneralInfoList"/>
 				</IconTabFilter>
-				<IconTabFilter text="{i18n>historyMaintenanceText}" count="4321">
-					<Text text="Maintenance go here ..." />
+				<IconTabFilter text="{i18n>historyMaintenanceText}" count="{selectedThingHistory>/Maintenances/count}">
+					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.MaintenancesList"/>
 				</IconTabFilter>
 				<IconTabFilter text="{i18n>historyDamageText}" count="{selectedThingHistory>/Damages/count}">
 					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.DamagesList"/>

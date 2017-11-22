@@ -168,6 +168,14 @@ app.post('/api/event/repair/create/:tId/:uId', auth, function (req, res) {
     bitapelService.createRepairEvent(req, res, uId, bId, newEvent);
 });
 
+app.post('/api/event/maintenance/create/:tId/:uId', auth, function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    var newEvent = req.body;
+    bitapelService.createMaintenanceEvent(req, res, uId, bId, newEvent);
+});
+
 // Transaction get
 app.get('/api/events/buyandsale/:tId/:uId', auth, function (req, res) {
     var bId = req.query.bId;
@@ -195,6 +203,13 @@ app.get('/api/events/repair/:tId/:uId', auth, function (req, res) {
     var tId = req.params.tId;    
     var uId = req.params.uId;
     bitapelService.getThingRepair(req, res, uId, tId, uId, bId);
+});
+
+app.get('/api/events/maintenance/:tId/:uId', auth, function (req, res) {
+    var bId = req.query.bId;
+    var tId = req.params.tId;    
+    var uId = req.params.uId;
+    bitapelService.getThingMaintenance(req, res, uId, tId, uId, bId);
 });
 
 // app start

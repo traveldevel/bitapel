@@ -1,7 +1,7 @@
 {
 	"BuyAndSale": [],
 	"GeneralInfo": [],
-	"MaintenanceLog": [],
-	"DamageHistory": [],
-	"KnownRepairs": []
+	"Maintenances": [],
+	"Damages": [],
+	"Repairs": []
 }

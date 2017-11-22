@@ -197,6 +197,28 @@ sap.ui.define([
             );
 
             return promise;
-        }        
+        },
+        
+        getThingMaintenance : function(tId, uId, bId) {
+            
+            var promise = new Promise(
+                function(resolve, reject){
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/api/events/maintenance/" + tId+ "/" + uId + "?bId=" + encodeURIComponent(bId),
+                        contentType: 'application/json; charset=UTF-8',
+                        success: function(res){                   
+                            resolve(res);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            reject(errorThrown);
+                        }
+                    });
+                }
+            );
+
+            return promise;
+        }          
     };
 });

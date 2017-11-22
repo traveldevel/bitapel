@@ -417,6 +417,40 @@ module.exports.getThingRepair = exports.getThingRepair = function(req, res, uId,
     });
 }
 
+module.exports.getThingMaintenance = exports.getThingMaintenance = function(req, res, uId, tId, uId, bId){
+    
+    fabricService.getThingMaintenanceLog(tId, bId).then(function(maintananceRecords){
+
+        //console.log(repairRecords);
+
+        var allRecords = [];
+
+        var n = maintananceRecords.length;
+        for(var i = 0; i < n; i++){
+            
+            var record = maintananceRecords[i];
+
+            record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
+            record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
+            record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
+            record.maintenanceDate = aesEnc.decrypt(record.maintenanceDate, uId);
+            record.maintenanceEntity = aesEnc.decrypt(record.maintenanceEntity, uId); 
+            record.maintenancePrice = aesEnc.decrypt(record.maintenancePrice, uId); 
+            record.maintenancePriceCurrency = aesEnc.decrypt(record.maintenancePriceCurrency, uId); 
+            record.maintenanceDetails = aesEnc.decrypt(record.maintenanceDetails, uId); 
+
+            allRecords.push(record);
+        }
+
+        var recordsResponse = {
+            count : allRecords.length,
+            rows : allRecords
+        }
+
+        res.json(recordsResponse);
+    });
+}
+
 // create functions for history
 module.exports.createBuyEvent = exports.createBuyEvent = function(req, res, uId, bId, newEvent){
     
@@ -497,4 +531,22 @@ module.exports.createRepairEvent = exports.createRepairEvent = function(req, res
     //console.log(newEventEnc);
 
     fabricService.createRepairEvent(newEventEnc, res);    
+}
+
+module.exports.createMaintenanceEvent = exports.createMaintenanceEvent = function(req, res, uId, bId, newEvent){
+    
+    var newEventEnc = newEvent;
+    
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, uId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, uId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, uId);
+    newEventEnc.maintenanceEntity = aesEnc.encrypt(newEvent.maintenanceEntity, uId); 
+    newEventEnc.maintenancePrice = aesEnc.encrypt(newEvent.maintenancePrice, uId); 
+    newEventEnc.maintenancePriceCurrency = aesEnc.encrypt(newEvent.maintenancePriceCurrency, uId); 
+    newEventEnc.maintenanceDetails = aesEnc.encrypt(newEvent.maintenanceDetails, uId); 
+    newEventEnc.maintenanceDate = aesEnc.encrypt(newEvent.maintenanceDate, uId); 
+
+    //console.log(newEventEnc);
+
+    fabricService.createMaintenanceEvent(newEventEnc, res);    
 }
