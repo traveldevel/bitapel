@@ -39,8 +39,8 @@
 				<IconTabFilter text="{i18n>historyDamageText}" count="{selectedThingHistory>/Damages/count}">
 					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.DamagesList"/>
 				</IconTabFilter>
-				<IconTabFilter text="{i18n>historyRepairText}" count="3">
-					<Text text="Repair content goes here ..." />
+				<IconTabFilter text="{i18n>historyRepairText}" count="{selectedThingHistory>/Repairs/count}">
+					<core:Fragment type="XML" fragmentName="history.for.every.thing.ui.fragment.RepairsList"/>
 				</IconTabFilter>				
 			</items>
 		</IconTabBar>

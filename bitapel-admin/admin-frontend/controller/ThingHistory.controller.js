@@ -70,7 +70,16 @@ sap.ui.define([
 					oModel.setProperty("/Damages", records);
 					
 					oView.setBusy(false);
-				});				
+				});		
+				
+				ThingService.getThingRepair(this.thingId, uId, bId).then(function(records){
+					console.log(records);
+
+					var oModel = that.getModel("selectedThingHistory");
+					oModel.setProperty("/Repairs", records);
+					
+					oView.setBusy(false);
+				});					
 			},
 
 			onCreateBuyPress: function(oEvent){

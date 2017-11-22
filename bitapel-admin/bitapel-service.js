@@ -383,6 +383,40 @@ module.exports.getThingDamage = exports.getThingDamage = function(req, res, uId,
     });
 }
 
+module.exports.getThingRepair = exports.getThingRepair = function(req, res, uId, tId, uId, bId){
+    
+    fabricService.getThingRepairLog(tId, bId).then(function(repairRecords){
+
+        //console.log(repairRecords);
+
+        var allRecords = [];
+
+        var n = repairRecords.length;
+        for(var i = 0; i < n; i++){
+            
+            var record = repairRecords[i];
+
+            record.recordedBy = aesEnc.decrypt(record.recordedBy, uId);
+            record.totalWorkingUnits = aesEnc.decrypt(record.totalWorkingUnits, uId);
+            record.totalWorkingUnitType = aesEnc.decrypt(record.totalWorkingUnitType, uId);
+            record.repairDate = aesEnc.decrypt(record.repairDate, uId);
+            record.repairEntity = aesEnc.decrypt(record.repairEntity, uId); 
+            record.repairPrice = aesEnc.decrypt(record.repairPrice, uId); 
+            record.repairPriceCurrency = aesEnc.decrypt(record.repairPriceCurrency, uId); 
+            record.repairDetails = aesEnc.decrypt(record.repairDetails, uId); 
+
+            allRecords.push(record);
+        }
+
+        var recordsResponse = {
+            count : allRecords.length,
+            rows : allRecords
+        }
+
+        res.json(recordsResponse);
+    });
+}
+
 // create functions for history
 module.exports.createBuyEvent = exports.createBuyEvent = function(req, res, uId, bId, newEvent){
     
@@ -445,4 +479,22 @@ module.exports.createDamageEvent = exports.createDamageEvent = function(req, res
     //console.log(newEventEnc);
 
     fabricService.createDamageEvent(newEventEnc, res);    
+}
+
+module.exports.createRepairEvent = exports.createRepairEvent = function(req, res, uId, bId, newEvent){
+    
+    var newEventEnc = newEvent;
+    
+    newEventEnc.recordedBy = aesEnc.encrypt(newEvent.recordedBy, uId);
+    newEventEnc.totalWorkingUnits = aesEnc.encrypt(newEvent.totalWorkingUnits, uId);
+    newEventEnc.totalWorkingUnitType = aesEnc.encrypt(newEvent.totalWorkingUnitType, uId);
+    newEventEnc.repairEntity = aesEnc.encrypt(newEvent.repairEntity, uId); 
+    newEventEnc.repairPrice = aesEnc.encrypt(newEvent.repairPrice, uId); 
+    newEventEnc.repairPriceCurrency = aesEnc.encrypt(newEvent.repairPriceCurrency, uId); 
+    newEventEnc.repairDetails = aesEnc.encrypt(newEvent.repairDetails, uId); 
+    newEventEnc.repairDate = aesEnc.encrypt(newEvent.repairDate, uId); 
+
+    //console.log(newEventEnc);
+
+    fabricService.createRepairEvent(newEventEnc, res);    
 }

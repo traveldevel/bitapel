@@ -1,0 +1,50 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Table 
+		id="thingRepairsHistoryTable"
+		inset="false"
+		items="{
+			path: 'selectedThingHistory>/Repairs/rows',
+			sorter: {
+				path: 'timestamp'
+			}
+		}">
+		<columns>
+			<Column>
+				<Text text="Transaction" />
+			</Column>		
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>TimestampText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>RecordedByText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>DateText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>TotalWorkingUnitsText}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>RepairDetailsText}" />
+			</Column>		
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Middle">
+				<Text text="{i18n>RepairPriceText}" />
+			</Column>								
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{selectedThingHistory>transactionId}" />
+					<Text text="{selectedThingHistory>timestamp}" />
+					<Text text="{selectedThingHistory>recordedBy}" />
+					<Text text="{selectedThingHistory>repairDate}" />
+					<Text text="{selectedThingHistory>totalWorkingUnits} {selectedThingHistory>totalWorkingUnitType}" />
+					<Text text="{selectedThingHistory>repairDetails}" />
+					<Text text="{selectedThingHistory>repairPrice} {selectedThingHistory>repairPriceCurrency}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

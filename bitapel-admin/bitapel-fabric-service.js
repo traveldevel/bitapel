@@ -425,6 +425,47 @@ module.exports.getThingDamageLog = exports.getThingDamageLog = function(tId, bId
     return getThingLogPromise;
 }
 
+module.exports.getThingRepairLog = exports.getThingRepairLog = function(tId, bId){
+    var getThingLogPromise = new Promise(
+        
+        function(resolve, reject){
+
+            var filter = {
+                where: {
+                    thing: "resource:org.bitapel.model.Thing#id:" + tId,
+                    owner: "resource:org.bitapel.model.User#id:" + bId
+                }
+            };
+
+            var filterQuery = encodeURIComponent(JSON.stringify(filter));
+
+            request({
+                url: FABRIC_COMPOSER_REST_URL + "/api/RepairEvent" + "?filter=" + filterQuery,
+                method: "GET"
+            }, function (error, response, body){
+                
+                //console.log(error, body);
+        
+                if (!error && response.statusCode == 200) {
+                    
+                    var records = JSON.parse(body);
+                    //console.log(thing);
+                    
+                    resolve(records);
+                }       
+                else{
+                    console.log("getThing Repair Events error : ", response);
+                    reject(error);
+                }                         
+        
+            });
+
+        }
+    );
+
+    return getThingLogPromise;
+}
+
 // create event transactions
 module.exports.createBuyEvent = exports.createBuyEvent = function(newEvent, res){
     
@@ -513,3 +554,26 @@ module.exports.createDamageEvent = exports.createDamageEvent = function(newEvent
         }                
     });
 }
+
+module.exports.createRepairEvent = exports.createRepairEvent = function(newEvent, res){
+    
+    //console.log(newEvent);
+
+    request({
+        url: FABRIC_COMPOSER_REST_URL + "/api/RepairEvent",
+        method: "POST",
+        json: true,
+        body: newEvent
+    }, function (error, response, body){
+        
+        //console.log(error, body);
+
+        if (!error && response.statusCode == 200) {
+            res.json(newEvent);
+        }
+        else{
+            console.log("createRepairEvent error : ", body);
+        }                
+    });
+}
+
