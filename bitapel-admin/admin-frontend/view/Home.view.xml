@@ -102,40 +102,6 @@
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
 			</l:BlockLayoutRow>
-			<l:BlockLayoutRow>
-				<l:BlockLayoutCell
-					backgroundColorSet="ColorSet9"
-					backgroundColorShade="ShadeA"
-					width="4">
-					<Table items="{path:'history>/latest', templateShareable: false}">
-						<headerToolbar>
-							<Toolbar design="Transparent">
-								<Title text="{i18n>historyOverviewTitle}"/>
-							</Toolbar>
-						</headerToolbar>
-							<columns>
-								<Column>
-									<Text text="{i18n>date}"/>
-								</Column>
-								<Column minScreenWidth="Tablet">
-									<Text text="{i18n>thing}"/>
-								</Column>
-								<Column minScreenWidth="Desktop" hAlign="End">
-									<Text text="{i18n>text}"/>
-								</Column>
-							</columns>
-							<items>
-								<ColumnListItem>
-									<cells>
-										<Text text="{history>thing}"/>
-										<Text text="{history>date}"/>
-										<Text text="{history>text}"/>
-									</cells>
-								</ColumnListItem>
-							</items>
-						</Table>
-				</l:BlockLayoutCell>
-			</l:BlockLayoutRow>
 		</l:BlockLayout>
 	</Page>
 </mvc:View>
