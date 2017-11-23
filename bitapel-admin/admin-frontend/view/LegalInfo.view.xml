@@ -4,7 +4,9 @@
 	xmlns:form="sap.ui.commons.form"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page showHeader="false" busyIndicatorDelay="1">
-		<Text text="{i18n>legalInfoText1}"/>
-		<Text text="{i18n>legalInfoText2}"/>
+		<VBox>
+			<Text text="{i18n>legalInfoText1}"/>
+			<Text text="{i18n>legalInfoText2}"/>
+		</VBox>
 	</Page>
 </mvc:View>

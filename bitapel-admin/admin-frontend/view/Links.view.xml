@@ -4,6 +4,8 @@
 	xmlns:form="sap.ui.commons.form"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page showHeader="false" busyIndicatorDelay="1">
-		<Link text="{i18n>linksText1}" href="{i18n>linksHref1}"/>
+		<VBox>
+			<Link text="{i18n>linksText1}" href="{i18n>linksHref1}"/>
+		</VBox>
 	</Page>
 </mvc:View>
