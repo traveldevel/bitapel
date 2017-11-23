@@ -20,6 +20,13 @@
 			<headerToolbar>
 				<Toolbar design="Transparent">
 					<Title text="{i18n>thingListTitle}"/>
+					<ToolbarSpacer/>
+					<Button
+						id="createNewThingButton"
+						icon="sap-icon://add-product"
+						text="{i18n>createNewThingButtonText}"
+						type="Emphasized"
+						press="onCreateNewThingButtonPress"/>
 				</Toolbar>
 			</headerToolbar>
 			<columns>
@@ -39,6 +46,9 @@
 					<Text text="{i18n>thingTypeText}"/>
 				</Column>	
 				<Column minScreenWidth="Phone" hAlign="Middle">
+					<Text text="{i18n>thingCardText}"/>
+				</Column>				
+				<Column minScreenWidth="Phone" hAlign="Middle">
 					<Text text="{i18n>thingHistoryText}"/>
 				</Column>	
 				<Column minScreenWidth="Phone" hAlign="Middle">
@@ -53,6 +63,11 @@
 						<Text text="{userThings>manufacturer}"/>
 						<Text text="{userThings>category}"/>
 						<Text text="{userThings>type}"/>
+						<Button 
+							id="cardButton" 
+							app:thingId="{userThings>id}"
+							press="onThingCardPress" 
+							icon="sap-icon://bar-code"/>						
 						<Button 
 							id="historyButton" 
 							app:thingId="{userThings>id}"

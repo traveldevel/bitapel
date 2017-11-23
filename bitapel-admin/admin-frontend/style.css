@@ -1,0 +1,5 @@
+.borderPrintBox {
+    padding: 10px;
+    border: 1px dashed grey;
+    box-sizing: border-box;
+}

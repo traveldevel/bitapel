@@ -138,9 +138,9 @@
 					"target": "thingHistory"
 				},
 				{
-					"pattern": "thingCards",
-					"name": "thingCards",
-					"target": "thingCards"
+					"pattern": "thingCard/{id}",
+					"name": "thingCard",
+					"target": "thingCard"
 				},
 				{
 					"pattern": "createBuyEvent/{id}",
@@ -219,8 +219,8 @@
 				"createSellEvent": {
 					"viewName": "CreateSellEvent"
 				},																
-				"thingCards": {
-					"viewName": "ThingCards"
+				"thingCard": {
+					"viewName": "ThingCard"
 				}																	
 			}
 		}

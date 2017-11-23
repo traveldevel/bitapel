@@ -70,6 +70,19 @@ sap.ui.define([
 				this.getRouter().navTo("editThing", { id : itemValue.id });
 			},
 
+			onCreateNewThingButtonPress: function(oEvent){
+				this.getRouter().navTo("createThing");
+			},
+
+			onThingCardPress: function(oEvent){
+				//console.log(oEvent);
+
+				var oButton = oEvent.getSource();
+				console.log(oButton.data("thingId"));
+
+				this.getRouter().navTo("thingCard", { id : oButton.data("thingId") });
+			},
+
 			onHistoryThingPress: function(oEvent){
 				//console.log(oEvent);
 
