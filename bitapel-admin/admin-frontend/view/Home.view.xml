@@ -79,8 +79,8 @@
 						<Text
 							text="{i18n>historyContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>historyLinkText}" href="#/thingHistory"/>
-						<Link text="{i18n>historyCreateEventLinkText}" href="#/createEvent"/>
+						<Link text="{i18n>historyLinkText}" href="#/things"/>
+						<Link text="{i18n>historyCreateEventLinkText}" href="#/things"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
 				<l:BlockLayoutCell
@@ -98,7 +98,7 @@
 						<Text
 							text="{i18n>publicContent}"
 							class="sapUiTinyMarginBottom"/>
-						<Link text="{i18n>publicThingLinkText}" href="#/thingCards"/>
+						<Link text="{i18n>publicThingLinkText}" href="#/things"/>
 					</l:VerticalLayout>
 				</l:BlockLayoutCell>
 			</l:BlockLayoutRow>
